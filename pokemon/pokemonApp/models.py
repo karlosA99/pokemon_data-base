@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Region(models.Model):
-    id_Region = models.IntegerField(primary_key= True) #id_regon = coder_region
+    id_Region = models.IntegerField(primary_key= True) #id_regon = region_code
     name = models.CharField(max_length = 30)
 
 class Community(models.Model):
@@ -41,10 +41,10 @@ class Motion(models.Model):
     element_name = models.ForeignKey(Element, null= False, on_delete= models.CASCADE)
 
 class Trainer(models.Model):
-    id_Trainer = models.ForeignKey(Citizen, on_delete= models.CASCADE)
+    id_Trainer = models.ForeignKey(Citizen, primary_key= True, on_delete= models.CASCADE)
     id_Gym = models.ForeignKey(Gym, null= True, on_delete= models.CASCADE)
-    class Meta:
-        unique_together = [['id_Trainer','id_Gym']]
+#    class Meta:
+#        unique_together = [['id_Trainer','id_Gym']]
 
 class Pokemon(models.Model):
     id_Pokemon = models.IntegerField(primary_key= True)
@@ -58,7 +58,7 @@ class Pokemon(models.Model):
 
 class CaughtPokemon(models.Model):
     id_Trainer = models.ForeignKey(Trainer, on_delete= models.CASCADE)
-    id_Pokemon = models.ForeignKey(Pokemon, on_delete= models.CASCADE)
+    id_Pokemon = models.ForeignKey(Pokemon, primary_key=True,on_delete= models.CASCADE)
     nickname = models.CharField(max_length= 15)
     pokeball = models.CharField(max_length= 15)
     caught_level = models.IntegerField()
@@ -69,25 +69,25 @@ class CaughtPokemon(models.Model):
 #!duda si los foraneos q son primarios pueden tener nulos.
 
 class Gym_Trainer(models.Model):
-    id_Trainer = models.ForeignKey(Trainer, on_delete= models.CASCADE)
+    id_Trainer = models.ForeignKey(Trainer, primary_key= True, on_delete= models.CASCADE)
     id_Gym = models.ForeignKey(Gym, on_delete= models.CASCADE)
     class Meta:
         unique_together = [['id_Trainer','id_Gym']]
 
 class Species_Region(models.Model):
-    name_species = models.ForeignKey(Species, on_delete= models.CASCADE)
+    name_species = models.ForeignKey(Species, primary_key= True, on_delete= models.CASCADE)
     id_Region = models.ForeignKey(Region, on_delete= models.CASCADE)
     class Meta:
         unique_together = [['name_species','id_Region']]
 
 class Species_Motion(models.Model):
-    name_species = models.ForeignKey(Species, on_delete= models.CASCADE)
+    name_species = models.ForeignKey(Species, primary_key= True, on_delete= models.CASCADE)
     name_motion = models.ForeignKey(Motion, on_delete= models.CASCADE)
     class Meta:
         unique_together = [['name_species','name_motion']]
 
 class Species_Element(models.Model):
-    name_species = models.ForeignKey(Species, on_delete= models.CASCADE)
+    name_species = models.ForeignKey(Species, primary_key= True, on_delete= models.CASCADE)
     name_element = models.ForeignKey(Element, on_delete= models.CASCADE)
     class Meta:
         unique_together = [['name_species','name_element']]
@@ -95,7 +95,7 @@ class Species_Element(models.Model):
 
 class Caught_Pokemon_Motion(models.Model):
     name_motion = models.ForeignKey(Motion, on_delete= models.CASCADE)
-    id_Pokemon = models.ForeignKey(Pokemon, on_delete= models.CASCADE)
+    id_Pokemon = models.ForeignKey(Pokemon, primary_key= True, on_delete= models.CASCADE)
     id_Trainer = models.ForeignKey(Trainer, on_delete= models.CASCADE)
 
     class Meta:
