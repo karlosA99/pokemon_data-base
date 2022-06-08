@@ -1,0 +1,49 @@
+{% extends 'table_base/table_base.html' %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>ID</td>
+			<td>Height</td>
+			<td>Shine</td>
+			<td>Sex</td>
+			<td>Weight</td>
+			<td>Nature</td>
+			<td>Species name</td>
+		</tr>
+		
+	</thead>
+	<tbody>
+		{% if object_list %}
+		{% for object in object_list %}
+		<tr>
+			<td>{{ object.id_Pokemon }}</td>
+			<td>{{ object.height }}</td>
+			<td>{{ object.shine }}</td>
+			<td>{{ object.sex }}</td>
+			<td>{{ object.weight }}</td>
+			<td>{{ object.nature }}</td>
+			<td>{{ object.species_name }}</td>
+		</tr>
+		{% endfor %}
+		{% else %}
+		<h1>No pokemon found</h1>
+		{% endif %}
+	</tbody>
+</table> 
+<ul class="pager">
+	<li>
+		{% if page_obj.has_previous %}
+       	 <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+		{% endif %}
+        </li>
+	<li>
+		{% if page_obj.has_next %}
+     	 <a href="?page={{ page_obj.next_page_number }}">Next</a> 
+    	{% endif %}
+    </li>
+</ul>
+
+{% endblock%}
