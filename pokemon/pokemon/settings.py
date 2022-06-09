@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'pokemon.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'pokemondb',
+        'NAME': 'pokebaseDB_',
         'USER': 'postgres',
         'PASSWORD' : 'ipvceV1l.',
         'HOST': '127.0.0.1',
