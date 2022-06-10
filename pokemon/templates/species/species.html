@@ -66,7 +66,13 @@
 	<thead>
 		<tr>
 			<td>ID</td>
-			<td>Gym</td>
+			<td>Name</td>
+			<td>Strong Element</td>
+			<td>Secundary Element</td>
+			<td>Is Legendary</td>
+			<td>Natural Motion</td>
+			<td>Taught Motion</td>
+			<td>Region</td>
 		</tr>
 		
 	</thead>
@@ -74,12 +80,18 @@
 		{% if object_list %}
 		{% for object in object_list %}
 		<tr>
-			<td>{{ object.id_Trainer }}</td>
-			<td>{{ object.id_Gym }}</td>
+			<td>{{ object.id_species }}</td>
+			<td>{{ object.name }}</td>
+			<td>{{ object.strong_element }}</td>
+			<td>{{ object.secundary_element }}</td>
+			<td>{{ object.legendary }}</td>
+			<td>{{ object.natural_motion }}</td>
+			<td>{{ object.taught_motion }}</td>
+			<td>{{ object.region }}</td>
 		</tr>
 		{% endfor %}
 		{% else %}
-		<h1>No trainer found</h1>
+		<h1>No species found</h1>
 		{% endif %}
 	</tbody>
 </table> 

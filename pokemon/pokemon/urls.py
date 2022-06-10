@@ -22,8 +22,13 @@ urlpatterns = [
     path('', vi.index, name="index"),
     path('citizen/', vi.CitizenList.as_view(), name='citizen'),
     path('trainer/', vi.TrainerList.as_view(), name='trainer'),
-    path('pokemones/', vi.PokemonesList.as_view(), name='pokemones'),
+    path('pokemon/', vi.PokemonList.as_view(), name='pokemon'),
     path('caught_pokemon/', vi.CaughtPokemonList.as_view(), name='caught_pokemon'),
     path('community/', vi.Community.as_view(), name='community'),
+    path('element/', vi.ElementList.as_view(), name='element'),
+    path('region/', vi.RegionList.as_view(), name='region'),
+    path('gym/', vi.GymList.as_view(), name='gym'),
+    path('motion/', vi.MotionList.as_view(), name='motion'),
+    path('species/', vi.SpeciesList.as_view(), name='species'),
 
 ]
