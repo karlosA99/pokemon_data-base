@@ -46,7 +46,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="{% url 'citizen' %}">citizen</a>
                   <a class="dropdown-item" href="{% url 'trainer' %}">Trainers</a>
-                  <a class="dropdown-item" href="{% url 'pokemones' %}">pokemones</a>
+                  <a class="dropdown-item" href="{% url 'pokemon' %}">pokemon</a>
                 </div>
             </li>
           </ul>
@@ -81,7 +81,7 @@
 			<td>{{ object.name }}</td>
 			<td>{{ object.age }}</td>
 			<td>{{ object.sex }}</td>
-			<td>{{ object.id_City }}</td>
+			<td>{{ object.born_region}}</td>
 		</tr>
 		{% endfor %}
 		{% else %}
