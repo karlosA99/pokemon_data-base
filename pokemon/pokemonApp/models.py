@@ -12,7 +12,7 @@ class Element(models.Model):
 #?Related with Region
 class Region(models.Model):
     id_Region = models.IntegerField(primary_key= True) #id_regon = region_code
-    name = models.CharField(max_length = 30)
+    name = models.CharField(max_length = 30, null= False)
 
 class Community(models.Model):
     id_Community = models.IntegerField(primary_key= True)
@@ -28,7 +28,7 @@ class Citizen(models.Model):
     name = models.CharField(max_length= 30)
     age = models.SmallIntegerField()
     sex = models.CharField(max_length= 1)
-    id_City = models.ForeignKey(City,on_delete= models.CASCADE)
+    id_Community = models.ForeignKey(Community, on_delete= models.CASCADE)
     born_region = models.ForeignKey(Region,on_delete= models.CASCADE)
 
 class Gym(models.Model):
@@ -36,17 +36,17 @@ class Gym(models.Model):
     name = models.CharField(max_length= 30)
     element_name = models.ForeignKey(Element, on_delete= models.CASCADE)
     id_City = models.OneToOneField(City,on_delete= models.CASCADE)
-    leader = models.OneToOneField(Citizen,on_delete= models.RESTRICT)
+    leader = models.OneToOneField(Citizen,on_delete= models.RESTRICT, null= False)
 
 class Motion(models.Model):
     name = models.CharField(primary_key= True, max_length= 15)
     element_name = models.ForeignKey(Element, null= False, on_delete= models.CASCADE)
 
 class Trainer(Citizen):
-    id_Trainer = models.CharField(unique=True, max_length= 30)
+    id_Trainer = models.CharField(unique=True, max_length= 10)
     id_Gym = models.ForeignKey(Gym, null= True, on_delete= models.SET_NULL,blank= True,related_name="%(class)s_id_Gym")
     oponent = models.ManyToManyField('self',through='Duel',through_fields=['trainer1', 'trainer1'])# preguntar esto al chuchy
-    medlas = models.ManyToManyField(Gym, blank= True,related_name= "%(class)s_medals")
+    medals = models.ManyToManyField(Gym, blank= True,related_name= "%(class)s_medals")
 
 class Species(models.Model):
     id_species = models.AutoField(primary_key= True)
