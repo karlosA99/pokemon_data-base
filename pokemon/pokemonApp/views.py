@@ -47,3 +47,7 @@ class MotionList(ListView):
 class SpeciesList(ListView):
     model = Gym
     template_name = 'species/species.html'
+
+class DuelList(ListView):
+    model = Duel
+    template_name = 'duel/duel.html'

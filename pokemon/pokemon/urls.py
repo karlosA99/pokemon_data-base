@@ -30,5 +30,6 @@ urlpatterns = [
     path('gym/', vi.GymList.as_view(), name='gym'),
     path('motion/', vi.MotionList.as_view(), name='motion'),
     path('species/', vi.SpeciesList.as_view(), name='species'),
+    path('duel/', vi.DuelList.as_view(), name='duel'),
 
 ]

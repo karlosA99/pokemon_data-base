@@ -28,7 +28,7 @@ class Citizen(models.Model):
     name = models.CharField(max_length= 30)
     age = models.SmallIntegerField()
     sex = models.CharField(max_length= 1)
-    id_Community = models.ForeignKey(Community, on_delete= models.CASCADE)
+   # id_Community = models.ForeignKey(Community, on_delete= models.CASCADE)
     born_region = models.ForeignKey(Region,on_delete= models.CASCADE)
 
 class Gym(models.Model):
