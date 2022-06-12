@@ -52,3 +52,7 @@ class SpeciesList(ListView):
 class DuelList(ListView):
     model = Duel
     template_name = 'duel/duel.html'
+
+class AboutList(ListView):
+    model = About
+    template_name = 'about/about.html'

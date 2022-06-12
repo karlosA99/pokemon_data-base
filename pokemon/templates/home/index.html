@@ -1,3 +1,209 @@
-{% extends 'base/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+{%block head%}
 
-<a href="{% url 'index' %}">Home</a>.
+<head>
+
+  {% block extrahead %}
+  {% endblock %}
+
+  <link rel="icon" type="image/x-icon" href="../../static/img/pokeball.ico">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min (2).css' %}">
+  <title>{% block title %} Home {% endblock %}</title>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+    integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+    integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+    crossorigin="anonymous"></script>
+  <script src="{% static 'js/bootstrap.min (2).js' %}"></script>
+  <script src="{% static 'js/exit.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.1/howler.min.js"></script>
+</head>
+{%endblock head%}
+
+<body onload="playtheme()">
+
+
+  {% block navbar %}
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid poke">
+      <a class="navbar-brand" href="#">POKEBASE</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
+        aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div>
+        <img
+          src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.jL4cCeS23Oc4jFYrK-bjiwHaHa%26pid%3DApi&f=1 "
+          width="25px" height="25px">
+      </div>
+
+      <div class="collapse navbar-collapse marg" id="navbarColor01">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="/">Home
+              <span class="visually-hidden">(current)</span>
+            </a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown" href="#" role="button"
+              aria-haspopup="true" aria-expanded="false">Relevant</a>
+            <!-- <div class="Table"> -->
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'citizen' %}">citizen</a>
+              <a class="dropdown-item" href="{% url 'trainer' %}">trainer</a>
+              <a class="dropdown-item" href="{% url 'pokemon' %}">pokemon</a>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown" href="#" role="button"
+              aria-haspopup="true" aria-expanded="false">Table</a>
+            <!-- <div class="Table"> -->
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'citizen' %}">Citizens</a>
+              <a class="dropdown-item" href="{% url 'trainer' %}">Trainers</a>
+              <a class="dropdown-item" href="{% url 'pokemon' %}">Pokemons</a>
+              <a class="dropdown-item" href="{% url 'caught_pokemon' %}">Caught Pokemons</a>
+              <a class="dropdown-item" href="{% url 'gym' %}">Gyms</a>
+              <a class="dropdown-item" href="{% url 'motion' %}">Motions</a>
+              <a class="dropdown-item" href="{% url 'region' %}">Regions</a>
+              <a class="dropdown-item" href="{% url 'species' %}">Species</a>
+              <a class="dropdown-item" href="{% url 'element' %}">Elements</a>
+              <a class="dropdown-item" href="{% url 'duel' %}">Duels</a>
+              <a class="dropdown-item" href="{% url 'element' %}">Elements</a>
+              <a class="dropdown-item" href="{% url 'duel' %}">Duels</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about">About</a>
+          </li>
+          <li style="position: absolute; top: 10px; right: 10px;">
+            <div class="btn-group-vertical">
+              <button type="button" href="admin" style="color: black ; background-color:rgb(251, 251, 251);"
+                class="btn btn-primary poke" role="botton">Admin site</button>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  {% endblock navbar%}
+  {%block content%}
+  <div>
+    <img src="https://graphicxtreme.com/wp-content/uploads/2020/04/pokemon-banner.jpg" id="banner">
+    <div class="dialog-panel">
+      <p class="poke" style="color:#343a40;font-size:40px;">HI, HUMAN!</p>
+      <p class="poke" style="color:#343a40; font-size: 30px;">WELCOME TO OUR POKEBASE</p>
+      <img src="https://cdn2.iconfinder.com/data/icons/pixel-art-large/100/PixelArtIcons-20-256.png"
+        class="continue-symbol">
+    </div>
+  </div>
+  {%endblock content%}
+
+  {%block style%}
+  <style>
+
+    @font-face {
+      font-family: 'Pokemon Classic';
+      src: local('Pokemon Classic'),
+        local('Pokemon-Classic');
+    }
+
+    .poke {
+      font-family: 'Pokemon Classic';
+
+    }
+
+    .marg-left {
+      margin-left: 20px;
+    }
+
+    .dropdown-item:hover {
+      background-color: #5a5a5a;
+    }
+
+    .filters li {
+      list-style-image: url("../../static/img/pokeball.ico");
+    }
+
+    li ul li {
+      list-style: none !important;
+    }
+
+    .alert-danger {
+      background-color: rgba(241, 0, 0, 0.707);
+    }
+
+    #banner {
+      width: 100%;
+    }
+
+    .dialog-panel {
+      border-style: double;
+      border-width: 7px;
+      border-radius: 5px;
+      margin: 30px;
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      align-content: flex-start;
+      flex-direction: column;
+    }
+
+    .continue-symbol {
+      width: 50px;
+      height: 50px;
+      position: relative;
+      transform: rotate(180deg);
+      align-self: flex-end;
+      animation: continue 1.5s linear infinite;
+    }
+
+    @keyframes continue {
+      0% {right: 0;top: 0px;}
+      50% {right: 0;top: 15px;}
+      100% {right: 0;top: 0px;}
+    }
+  </style>
+  {%endblock style%}
+  {% block extracss %}
+  {% endblock extracss%}
+
+
+</body>
+  {% block extrajs %}
+<script>
+ 
+  function playtheme() {
+  
+    var sound = new Howl({
+      src: ['static/aud/maintheme.wav'],
+      volume: 1.0,
+      onend: function () {
+        sound.play()
+      }
+    });
+    sound.play()
+   
+  }
+    
+</script>
+  {% endblock %}
+</html>

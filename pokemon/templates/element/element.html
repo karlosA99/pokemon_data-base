@@ -5,12 +5,13 @@
 
     {% block extrahead %}
     {% endblock %}
+    <link rel="icon" type="image/x-icon" href="../../static/img/pokeball.ico">
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min (2).css' %}">
-    <title>{% block title %} Document {% endblock %}</title>
+    <title>{% block title %} Element {% endblock %}</title>
 </head>
 <body>
   
@@ -31,7 +32,7 @@
         <div class="collapse navbar-collapse marg" id="navbarColor01">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <a class="nav-link active" href="''">Home
+              <a class="nav-link active" href="/">Home
                 <span class="visually-hidden">(current)</span>
               </a>
             </li>
@@ -51,13 +52,20 @@
               aria-haspopup="true" aria-expanded="false">Table</a>
             <!-- <div class="Table"> -->
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{% url 'citizen' %}">citizen</a>
-              <a class="dropdown-item" href="{% url 'trainer' %}">trainer</a>
-              <a class="dropdown-item" href="{% url 'pokemon' %}">pokemon</a>
+               <a class="dropdown-item" href="{% url 'citizen' %}">Citizens</a>
+              <a class="dropdown-item" href="{% url 'trainer' %}">Trainers</a>
+              <a class="dropdown-item" href="{% url 'pokemon' %}">Pokemons</a>
+              <a class="dropdown-item" href="{% url 'caught_pokemon' %}">Caught Pokemons</a>
+              <a class="dropdown-item" href="{% url 'gym' %}">Gyms</a>
+              <a class="dropdown-item" href="{% url 'motion' %}">Motions</a>
+              <a class="dropdown-item" href="{% url 'region' %}">Regions</a>
+              <a class="dropdown-item" href="{% url 'species' %}">Species</a>
+              <a class="dropdown-item" href="{% url 'element' %}">Elements</a>
+              <a class="dropdown-item" href="{% url 'duel' %}">Duels</a>
             </div>
           </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="about">About</a>
             </li>
             <li style="position: absolute; top: 30px; right: 10px;">
             <div  class="btn-group-vertical">
@@ -104,7 +112,7 @@
 	</tbody>
 </table> 
 
-<div class="col-2">
+<div class="col-2 filters">
   <div class="row">
       
   <h5 class="poke marg">Filters</h5>
@@ -117,8 +125,7 @@
       <ul>
         <li>
           <form>
-            <p class="f-size">Please enter an element:</p>
-            <input type="text" size="10" maxlength="20">
+            <input type="text" size="10" maxlength="20" placeholder="fire">
           </form>
         </li>       
       </ul>
@@ -154,6 +161,20 @@
 .dropdown-item:hover{
         background-color:#5a5a5a;
       }
+    .filters li{
+        list-style-image: url("../../static/img/pokeball.ico");
+      }
+      li ul li{
+        list-style:none !important;
+      }
+
+     .alert-danger{
+       background-color: rgba(241, 0, 0, 0.707);
+     }
+    
+       input::placeholder{
+      color: rgba(87, 87, 87, 0.437) ;
+    }
     </style> 
 
 {% block extrajs %}

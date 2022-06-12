@@ -87,6 +87,8 @@ class Duel(models.Model):
     winner = models.ForeignKey(Trainer, on_delete= models.CASCADE)
     pokemons_played = models.ManyToManyField(CaughtPokemon)
 
+class About(models.Model):
+    pass
 
 # class Gym_Trainer(models.Model):
 #     id_Trainer = models.ForeignKey(Trainer, primary_key= True, on_delete= models.CASCADE)

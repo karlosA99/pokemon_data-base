@@ -6,12 +6,13 @@
 
   {% block extrahead %}
   {% endblock %}
+    <link rel="icon" type="image/x-icon" href="../../static/img/pokeball.ico">
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{% static 'css/bootstrap.min (2).css' %}">
-  <title>{% block title %} Document {% endblock %}</title>
+  <title>{% block title %} Species {% endblock %}</title>
 </head>
 
 <body>
@@ -36,7 +37,7 @@
       <div class="collapse navbar-collapse marg" id="navbarColor01">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link active" href="''">Home
+            <a class="nav-link active" href="/">Home
               <span class="visually-hidden">(current)</span>
             </a>
           </li>
@@ -46,9 +47,16 @@
               aria-haspopup="true" aria-expanded="false">Relevant</a>
             <!-- <div class="Table"> -->
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{% url 'citizen' %}">citizen</a>
-              <a class="dropdown-item" href="{% url 'trainer' %}">trainer</a>
-              <a class="dropdown-item" href="{% url 'pokemon' %}">pokemon</a>
+               <a class="dropdown-item" href="{% url 'citizen' %}">Citizens</a>
+              <a class="dropdown-item" href="{% url 'trainer' %}">Trainers</a>
+              <a class="dropdown-item" href="{% url 'pokemon' %}">Pokemons</a>
+              <a class="dropdown-item" href="{% url 'caught_pokemon' %}">Caught Pokemons</a>
+              <a class="dropdown-item" href="{% url 'gym' %}">Gyms</a>
+              <a class="dropdown-item" href="{% url 'motion' %}">Motions</a>
+              <a class="dropdown-item" href="{% url 'region' %}">Regions</a>
+              <a class="dropdown-item" href="{% url 'species' %}">Species</a>
+              <a class="dropdown-item" href="{% url 'element' %}">Elements</a>
+              <a class="dropdown-item" href="{% url 'duel' %}">Duels</a>
             </div>
           </li>
 
@@ -57,9 +65,16 @@
               aria-haspopup="true" aria-expanded="false">Table</a>
             <!-- <div class="Table"> -->
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{% url 'citizen' %}">citizen</a>
-              <a class="dropdown-item" href="{% url 'trainer' %}">trainer</a>
-              <a class="dropdown-item" href="{% url 'pokemon' %}">pokemon</a>
+               <a class="dropdown-item" href="{% url 'citizen' %}">Citizens</a>
+              <a class="dropdown-item" href="{% url 'trainer' %}">Trainers</a>
+              <a class="dropdown-item" href="{% url 'pokemon' %}">Pokemons</a>
+              <a class="dropdown-item" href="{% url 'caught_pokemon' %}">Caught Pokemons</a>
+              <a class="dropdown-item" href="{% url 'gym' %}">Gyms</a>
+              <a class="dropdown-item" href="{% url 'motion' %}">Motions</a>
+              <a class="dropdown-item" href="{% url 'region' %}">Regions</a>
+              <a class="dropdown-item" href="{% url 'species' %}">Species</a>
+              <a class="dropdown-item" href="{% url 'element' %}">Elements</a>
+              <a class="dropdown-item" href="{% url 'duel' %}">Duels</a>
             </div>
           </li>
           <!-- <li class="nav-item dropdown">
@@ -73,7 +88,7 @@
               </div>
           </li> -->
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="about">About</a>
           </li>
           <li style="position: absolute; top: 30px; right: 10px;">
             <div class="btn-group-vertical">
@@ -137,7 +152,7 @@
         </tbody>
       </table>
 
-      <div class="col-1">
+      <div class="col-1 filters">
         <div class="row">
 
           <h6 class="poke marg">Filters</h6>
@@ -150,8 +165,7 @@
                 <ul>
                   <li>
                     <form>
-                      <p>Please enter a species name:</p>
-                      <input type="text" size="10" maxlength="15">
+                      <input type="text" size="17" maxlength="30" placeholder="rat">
                     </form>
                   </li>
                 </ul>
@@ -160,8 +174,7 @@
                 <ul>
                   <li>
                     <form>
-                      <p>Please enter an element:</p>
-                      <input type="text" size="10" maxlength="15">
+                      <input type="text" size="17" maxlength="30" placeholder="ice">
                     </form>
                   </li>
                 </ul>
@@ -170,8 +183,7 @@
                 <ul>
                   <li>
                     <form>
-                      <p>Please enter an element:</p>
-                      <input type="text" size="10" maxlength="15">
+                      <input type="text" size="17" maxlength="15" placeholder="water">
                     </form>
                   </li>
                 </ul>
@@ -180,8 +192,7 @@
                 <ul>
                   <li>
                     <form>
-                      <p>Please enter a region name:</p>
-                      <input type="text" size="10" maxlength="15">
+                      <input type="text" size="17" maxlength="15" placeholder="Kanto">
                     </form>
                   </li>
                 </ul>
@@ -233,6 +244,20 @@
     .dropdown-item:hover{
         background-color:#5a5a5a;
       }
+     .filters li{
+        list-style-image: url("../../static/img/pokeball.ico");
+      }
+      li ul li{
+        list-style:none !important;
+      }
+
+     .alert-danger{
+       background-color: rgba(241, 0, 0, 0.707);
+     }
+      input::placeholder{
+        color: rgba(87, 87, 87, 0.437) ;
+    }
+
     </style>
     {% block extrajs %}
     {% endblock %}
