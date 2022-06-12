@@ -26,10 +26,11 @@
   <script src="{% static 'js/bootstrap.min (2).js' %}"></script>
   <script src="{% static 'js/exit.js' %}"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.1/howler.min.js"></script>
 </head>
 {%endblock head%}
 
-<body>
+<body onload="playtheme()">
 
 
   {% block navbar %}
@@ -189,5 +190,20 @@
   {% endblock %}
 
 </body>
-
+<script>
+ 
+  function playtheme() {
+  
+    var sound = new Howl({
+      src: ['static/aud/maintheme.wav'],
+      volume: 1.0,
+      onend: function () {
+        sound.play()
+      }
+    });
+    sound.play()
+   
+  }
+    
+</script>
 </html>
