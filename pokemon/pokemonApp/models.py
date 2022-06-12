@@ -1,4 +1,6 @@
+from email.policy import default
 from django.db import models
+from django.forms import CharField
 from django.utils import timezone as tz
 
 
@@ -17,6 +19,7 @@ class Region(models.Model):
 class Community(models.Model):
     id_Community = models.IntegerField(primary_key= True)
     id_Region = models.ForeignKey(Region, null= False,on_delete= models.RESTRICT)
+    name = CharField(max_length= 30, null= False, default= '')
 
 class City(models.Model):
     id_City = models.OneToOneField(Community,primary_key= True, on_delete= models.CASCADE)
@@ -24,11 +27,11 @@ class Village(models.Model):
     id_village = models.OneToOneField(Community, primary_key= True,on_delete= models.CASCADE)
 
 class Citizen(models.Model):
-    id_Citizen = models.CharField(primary_key= True,max_length= 10)
+    id_Citizen = models.CharField(primary_key= True,max_length= 11)
     name = models.CharField(max_length= 30)
     age = models.SmallIntegerField()
     sex = models.CharField(max_length= 1)
-   # id_Community = models.ForeignKey(Community, on_delete= models.CASCADE)
+    id_Community = models.ForeignKey(Community, on_delete= models.CASCADE, default= 0)
     born_region = models.ForeignKey(Region,on_delete= models.CASCADE)
 
 class Gym(models.Model):
