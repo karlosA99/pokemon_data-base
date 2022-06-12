@@ -8,6 +8,7 @@ from pokemonApp.models import *
 
 def index(request):
     return render(request, 'home/index.html')
+    
 class CitizenList(ListView):
     model = Citizen
     template_name = 'citizen/citizen.html'
