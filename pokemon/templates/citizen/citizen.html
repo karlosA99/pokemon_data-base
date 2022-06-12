@@ -55,6 +55,7 @@
               <a class="dropdown-item" href="{% url 'region' %}">Regions</a>
               <a class="dropdown-item" href="{% url 'species' %}">Species</a>
               <a class="dropdown-item" href="{% url 'element' %}">Elements</a>
+              <a class="dropdown-item" href="{% url 'duel' %}">Duels</a>
             </div>
           </li>
 
@@ -71,6 +72,7 @@
               <a class="dropdown-item" href="{% url 'region' %}">Regions</a>
               <a class="dropdown-item" href="{% url 'species' %}">Species</a>
               <a class="dropdown-item" href="{% url 'element' %}">Elements</a>
+              <a class="dropdown-item" href="{% url 'duel' %}">Duels</a>
             </div>
           </li>
           <li class="nav-item">
@@ -105,7 +107,7 @@
             <td>ID</td>
             <td>Name</td>
             <td>Age</td>
-            <td>Sex</td>
+            <td>Gender</td>
             <td>Place of Birth</td>
           </tr>
 
@@ -145,8 +147,7 @@
                 <ul>
                   <li>
                     <form>
-                      <p>Please enter an age:</p>
-                      <input type="text" size="15" maxlength="30">
+                      <input type="text" size="15" maxlength="30" placeholder="12">
                     </form>
                   </li>
                 </ul>
@@ -160,17 +161,11 @@
                   <input type="checkbox" id="M" name="M" value="M">
                   <label for="M">M</label>
                 </ul>
-                <ul>
-                  <input type="checkbox" id="Other" name="other" value="other">
-                  <label for="other">Other</label>
-                </ul>
               <li class="sub-menu poke marg">Region</a>
                 <ul>
                   <li>
                     <form>
-                      <p class="poke">Please enter a region:</p>
-                      <input type="text" size="15" maxlength="30">
-
+                      <input type="text" size="15" maxlength="30" placeholder="Kanto">
                     </form>
                   </li>
                 </ul>
@@ -228,6 +223,11 @@
      .alert-danger{
        background-color: rgba(241, 0, 0, 0.707);
      }
+
+       
+       input::placeholder{
+      color: rgba(87, 87, 87, 0.437) ;
+    }
 
     </style>
 

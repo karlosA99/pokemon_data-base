@@ -60,6 +60,7 @@
               <a class="dropdown-item" href="{% url 'region' %}">Regions</a>
               <a class="dropdown-item" href="{% url 'species' %}">Species</a>
               <a class="dropdown-item" href="{% url 'element' %}">Elements</a>
+              <a class="dropdown-item" href="{% url 'duel' %}">Duels</a>
             </div>
           </li>
             <li class="nav-item">
@@ -146,6 +147,9 @@
        background-color: rgba(241, 0, 0, 0.707);
      }
 
+       input::placeholder{
+      color: rgba(87, 87, 87, 0.437) ;
+    }
     </style> 
 
 {% block extrajs %}

@@ -60,6 +60,7 @@
               <a class="dropdown-item" href="{% url 'region' %}">Regions</a>
               <a class="dropdown-item" href="{% url 'species' %}">Species</a>
               <a class="dropdown-item" href="{% url 'element' %}">Elements</a>
+              <a class="dropdown-item" href="{% url 'duel' %}">Duels</a>
             </div>
           </li>
             <li class="nav-item">
@@ -132,8 +133,7 @@
       <ul>
         <li>
           <form>
-            <p class="f-size">Please enter a trainer name:</p>
-            <input type="text" size="10" maxlength="20">
+            <input type="text" size="10" maxlength="20" placeholder="Ash">
           </form>
         </li>       
       </ul>
@@ -142,8 +142,7 @@
       <ul>
         <li>
           <form>
-            <p class="f-size">Please enter a region name:</p>
-            <input type="text" size="10" maxlength="20">
+            <input type="text" size="10" maxlength="20" placeholder="Kanto">
           </form>
         </li>       
       </ul>
@@ -189,6 +188,9 @@
        background-color: rgba(241, 0, 0, 0.707);
      }
 
+      input::placeholder{
+    color: rgba(87, 87, 87, 0.437) ;
+  }
     </style> 
 
 
