@@ -28,17 +28,17 @@
         <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.jL4cCeS23Oc4jFYrK-bjiwHaHa%26pid%3DApi&f=1 "width = "25" height = "25">
        </div>
 
-        <div class="collapse navbar-collapse marg-left" id="navbarColor01">
+        <div class="collapse navbar-collapse marg" id="navbarColor01">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <a class="nav-link active" href="#">Home
+              <a class="nav-link active" href="../home/">Home
                 <span class="visually-hidden">(current)</span>
               </a>
             </li>
             
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Relevant</a>
-              <div class="Table">
+              <a class="nav-link dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Relevant</a>
+              <!-- <div class="Table"> -->
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="{% url 'citizen' %}">citizen</a>
                   <a class="dropdown-item" href="{% url 'trainer' %}">trainer</a>
@@ -47,16 +47,21 @@
             </li>
 
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Table</a>
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Tables</a>
               <div class="Table">
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="{% url 'citizen' %}">citizen</a>
-                  <a class="dropdown-item" href="{% url 'trainer' %}">trainer</a>
-                  <a class="dropdown-item" href="{% url 'pokemon' %}">pokemon</a>
+                  <a class="dropdown-item" href="../citizen/">citizen</a>
+                  <a class="dropdown-item" href="{../trainer/}">trainer</a>
+                  <a class="dropdown-item" href="{../home/}">pokemon</a>
                 </div>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">About</a>
+            </li>
+            <li style="position: absolute; top: 10px; right: 10px;">
+            <div  class="btn-group-vertical">
+              <button type="button" href="admin" style="color: black ; background-color:rgb(251, 251, 251);" class="btn btn-primary poke" role="botton">Admin site</button>
+            </div>
             </li>
           
           </ul>

@@ -31,14 +31,14 @@
         <div class="collapse navbar-collapse marg" id="navbarColor01">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <a class="nav-link active" href="#">Home
+              <a class="nav-link active" href="../home/">Home
                 <span class="visually-hidden">(current)</span>
               </a>
             </li>
             
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Relevant</a>
-              <div class="Table">
+              <a class="nav-link dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Relevant</a>
+              <!-- <div class="Table"> -->
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="{% url 'citizen' %}">citizen</a>
                   <a class="dropdown-item" href="{% url 'trainer' %}">trainer</a>
@@ -47,16 +47,21 @@
             </li>
 
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Table</a>
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Tables</a>
               <div class="Table">
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="{% url 'citizen' %}">citizen</a>
-                  <a class="dropdown-item" href="{% url 'trainer' %}">trainer</a>
-                  <a class="dropdown-item" href="{% url 'pokemon' %}">pokemon</a>
+                  <a class="dropdown-item" href="../citizen/">citizen</a>
+                  <a class="dropdown-item" href="{../trainer/}">trainer</a>
+                  <a class="dropdown-item" href="{../home/}">pokemon</a>
                 </div>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">About</a>
+            </li>
+            <li style="position: absolute; top: 30px; right: 10px;">
+            <div  class="btn-group-vertical">
+              <button type="button" style="color: black ; background-color:rgb(251, 251, 251);" class="btn btn-primary poke">Admin site</button>
+            </div>
             </li>
           
           </ul>
@@ -96,7 +101,10 @@
 		</tr>
 		{% endfor %}
 		{% else %}
-		<!-- <h6 class="poke" style="color:red">Sorry, no citizens found</h6> -->
+			<div  class="alert alert-dismissible alert-danger">
+      <button type="button" style="float: right;" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>Oh snap!</strong> We don't have any information about it. If you are admin, try insert some info <a href="../citizen/">here</a>.
+    </div>
 		{% endif %}
 	</tbody>
 </table> 
