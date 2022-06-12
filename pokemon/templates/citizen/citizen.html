@@ -55,12 +55,11 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
               aria-expanded="false">Tables</a>
-            <div class="Table">
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="../citizen/">citizen</a>
-                <a class="dropdown-item" href="{../trainer/}">trainer</a>
-                <a class="dropdown-item" href="{../home/}">pokemon</a>
-              </div>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="../citizen/">citizen</a>
+              <a class="dropdown-item" href="{../trainer/}">trainer</a>
+              <a class="dropdown-item" href="{../home/}">pokemon</a>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">About</a>
@@ -112,7 +111,8 @@
           {% endfor %}
           {% else %}
           <div class="alert alert-dismissible alert-danger">
-            <button type="button" style="float: right;" class="btn-close" onclick="exit()" data-bs-dismiss="alert"></button>
+            <button type="button" style="float: right;" class="btn-close" onclick="exit()"
+              data-bs-dismiss="alert"></button>
             <strong>Oh snap!</strong> We don't have any information about it. If you are admin, try insert some info <a
               href="../citizen/">here</a>.
           </div>
@@ -202,7 +202,10 @@
         margin: 20px;
       }
 
+      .dropdown-item:hover{
+        background-color:#5a5a5a;
       }
+    
     </style>
 
 
