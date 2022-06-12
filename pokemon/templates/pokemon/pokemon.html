@@ -51,9 +51,15 @@
               aria-haspopup="true" aria-expanded="false">Table</a>
             <!-- <div class="Table"> -->
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{% url 'citizen' %}">citizen</a>
-              <a class="dropdown-item" href="{% url 'trainer' %}">trainer</a>
-              <a class="dropdown-item" href="{% url 'pokemon' %}">pokemon</a>
+               <a class="dropdown-item" href="{% url 'citizen' %}">Citizens</a>
+              <a class="dropdown-item" href="{% url 'trainer' %}">Trainers</a>
+              <a class="dropdown-item" href="{% url 'pokemon' %}">Pokemons</a>
+              <a class="dropdown-item" href="{% url 'caught_pokemon' %}">Caught Pokemons</a>
+              <a class="dropdown-item" href="{% url 'gym' %}">Gyms</a>
+              <a class="dropdown-item" href="{% url 'motion' %}">Motions</a>
+              <a class="dropdown-item" href="{% url 'region' %}">Regions</a>
+              <a class="dropdown-item" href="{% url 'species' %}">Species</a>
+              <a class="dropdown-item" href="{% url 'element' %}">Elements</a>
             </div>
           </li>
             <li class="nav-item">
@@ -74,8 +80,8 @@
 	{% endblock %}
            
 <div class="marg" align="center">
-  <h4 class="poke">Gym</h4>
-    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.8xZZvRJm3bQ2w0c5P0JuEgHaEK%26pid%3DApi&f=1"width = "150" height = "75" >
+  <h4 class="poke">Pokemons</h4>
+    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.BgrlsxaQZZ0RkyT1NO0zxwHaE8%26pid%3DApi&f=1"width = "150" height = "100" >
 </div>
 
 <div id="customlay" class="container" >
@@ -116,7 +122,7 @@
 	</tbody>
 </table>
 
-<div class="col-2">
+<div class="col-2 filters">
   <div class="row">
       
   <h5 class="poke marg">Filters</h5>
@@ -130,7 +136,7 @@
         <li>
           <form>
             <p>Please enter a height:</p>
-            <input type="text" size="15" maxlength="15">
+            <input type="text" size="10" maxlength="15">
           </form>
         </li>       
       </ul>
@@ -140,7 +146,7 @@
         <li>
           <form>
             <p>Please enter a weight:</p>
-            <input type="text" size="15" maxlength="15">
+            <input type="text" size="10" maxlength="15">
           </form>
         </li>       
       </ul>
@@ -150,7 +156,7 @@
         <li>
           <form>
             <p>Please enter a nature:</p>
-            <input type="text" size="15" maxlength="15">
+            <input type="text" size="10" maxlength="15">
           </form>
         </li>       
       </ul>
@@ -160,7 +166,7 @@
         <li>
           <form>
             <p>Please enter a spicies:</p>
-            <input type="text" size="15" maxlength="15">
+            <input type="text" size="10" maxlength="15">
           </form>
         </li>       
       </ul>
@@ -219,6 +225,17 @@
 .dropdown-item:hover{
         background-color:#5a5a5a;
       }
+    .filters li{
+        list-style-image: url("../../static/img/pokeball.ico");
+      }
+      li ul li{
+        list-style:none !important;
+      }
+
+     .alert-danger{
+       background-color: rgba(241, 0, 0, 0.707);
+     }
+
     </style> 
 {% block extrajs %}
 {% endblock %}
