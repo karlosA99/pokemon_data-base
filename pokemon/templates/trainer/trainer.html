@@ -46,9 +46,15 @@
               aria-haspopup="true" aria-expanded="false">Relevant</a>
             <!-- <div class="Table"> -->
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{% url 'citizen' %}">citizen</a>
-              <a class="dropdown-item" href="{% url 'trainer' %}">trainer</a>
-              <a class="dropdown-item" href="{% url 'pokemon' %}">pokemon</a>
+              <a class="dropdown-item" href="{% url 'citizen' %}">Citizens</a>
+              <a class="dropdown-item" href="{% url 'trainer' %}">Trainers</a>
+              <a class="dropdown-item" href="{% url 'pokemon' %}">Pokemons</a>
+              <a class="dropdown-item" href="{% url 'caught_pokemon' %}">Caught Pokemons</a>
+              <a class="dropdown-item" href="{% url 'gym' %}">Gyms</a>
+              <a class="dropdown-item" href="{% url 'motion' %}">Motions</a>
+              <a class="dropdown-item" href="{% url 'region' %}">Regions</a>
+              <a class="dropdown-item" href="{% url 'species' %}">Species</a>
+              <a class="dropdown-item" href="{% url 'element' %}">Elements</a>
             </div>
           </li>
 
@@ -56,11 +62,17 @@
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
               aria-expanded="false">Tables</a>
             <!-- <div class="Table"> -->
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="../citizen/">citizen</a>
-                <a class="dropdown-item" href="{../trainer/}">trainer</a>
-                <a class="dropdown-item" href="{../home/}">pokemon</a>
-              </div>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'citizen' %}">Citizens</a>
+              <a class="dropdown-item" href="{% url 'trainer' %}">Trainers</a>
+              <a class="dropdown-item" href="{% url 'pokemon' %}">Pokemons</a>
+              <a class="dropdown-item" href="{% url 'caught_pokemon' %}">Caught Pokemons</a>
+              <a class="dropdown-item" href="{% url 'gym' %}">Gyms</a>
+              <a class="dropdown-item" href="{% url 'motion' %}">Motions</a>
+              <a class="dropdown-item" href="{% url 'region' %}">Regions</a>
+              <a class="dropdown-item" href="{% url 'species' %}">Species</a>
+              <a class="dropdown-item" href="{% url 'element' %}">Elements</a>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">About</a>
@@ -107,7 +119,8 @@
           {% endfor %}
           {% else %}
           <div class="alert alert-dismissible alert-danger">
-            <button type="button" style="float: right;" class="btn-close" onclick="exit()" data-bs-dismiss="alert"></button>
+            <button type="button" style="float: right;" class="btn-close" onclick="exit()"
+              data-bs-dismiss="alert"></button>
             <strong>Oh snap!</strong> We don't have any information about it. If you are admin, try insert some info <a
               href="../citizen/">here</a>.
 
@@ -115,7 +128,7 @@
         </tbody>
       </table>
 
-      <div class="col-1">
+      <div class="col-1 filters">
         <div class="row">
 
           <h5 class="poke marg">Filters</h5>
@@ -160,9 +173,20 @@
         font-size: 10px
       }
 
-    .dropdown-item:hover{
-        background-color:#5a5a5a;
+      .dropdown-item:hover {
+        background-color: #5a5a5a;
       }
+    .filters li{
+        list-style-image: url("../../static/img/pokeball.ico");
+      }
+      li ul li{
+        list-style:none !important;
+      }
+
+     .alert-danger{
+       background-color: rgba(241, 0, 0, 0.707);
+     }
+
     </style>
     {% block extrajs %}
     {% endblock %}
