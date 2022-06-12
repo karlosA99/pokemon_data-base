@@ -19,7 +19,7 @@ class Region(models.Model):
 class Community(models.Model):
     id_Community = models.IntegerField(primary_key= True)
     id_Region = models.ForeignKey(Region, null= False,on_delete= models.RESTRICT)
-    name = CharField(max_length= 30, null= False, default= '')
+    name = models.CharField(max_length= 30, null= False, default= '')
 
 class City(models.Model):
     id_City = models.OneToOneField(Community,primary_key= True, on_delete= models.CASCADE)
@@ -48,7 +48,7 @@ class Motion(models.Model):
 class Trainer(Citizen):
     id_Trainer = models.CharField(unique=True, max_length= 10)
     id_Gym = models.ForeignKey(Gym, null= True, on_delete= models.SET_NULL,blank= True,related_name="%(class)s_id_Gym")
-    oponent = models.ManyToManyField('self',through='Duel',through_fields=['trainer1', 'trainer1'])# preguntar esto al chuchy
+    oponent = models.ManyToManyField('self',through='Duel',through_fields=['trainer1', 'trainer1'])
     medals = models.ManyToManyField(Gym, blank= True,related_name= "%(class)s_medals")
 
 class Species(models.Model):
