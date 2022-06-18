@@ -2,7 +2,6 @@ from django.contrib import admin
 from pokemonApp.models import CaughtPokemon, Citizen, City, Community, Duel, Element, Gym, Motion, Pokemon, Region, Species, Trainer, Village
 
 # Register your models here.
-
 admin.site.register(Region)
 admin.site.register(City)
 admin.site.register(Element)
