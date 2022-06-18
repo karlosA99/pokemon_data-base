@@ -1,10 +1,13 @@
-from operator import index
-from django.http import HttpResponse
+from unicodedata import name
+from cv2 import CirclesGridFinderParameters, RQDecomp3x3
+from django.db import reset_queries
+from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
 from django.template import loader
-from django.urls import reverse_lazy
 from django.views.generic import ListView
 from pokemonApp.models import *
+from django_filters import CharFilter
+
 
 def index(request):
     return render(request, 'home/index.html')
@@ -13,6 +16,19 @@ class CitizenList(ListView):
     model = Citizen
     template_name = 'citizen/citizen.html'
 
+    def get(self, request : HttpRequest) -> HttpResponse:
+        citizen = Citizen.objects.all()
+
+        if "name" in request.GET and request.GET["name"] != '':
+            citizen = citizen.filter(name=request.GET["name"])
+        if "age" in request.GET and request.GET["age"] != '':
+            citizen = citizen.filter(age= int(request.GET["age"]))
+        if "gender" in request.GET and request.GET["gender"] != '':
+            citizen = citizen.filter(sex= request.GET["gender"])
+        if "region" in request.GET and request.GET['region'] !='':
+            citizen = citizen.filter(born_region=request.GET(['region']))
+
+        return render(request, self.template_name, {'object_list': citizen})
 class TrainerList(ListView):
     model = Trainer
     template_name = 'trainer/trainer.html'
@@ -32,10 +48,19 @@ class Community(ListView):
 class ElementList(ListView):
     model = Element
     template_name = 'element/element.html'
-    
+
+    def get(self, request: HttpRequest) -> HttpResponse:
+        elements = Element.objects.all()
+
+        if "name" in request.GET and request.GET["name"] != '':
+            elements = elements.filter(name = request.GET["name"])
+
+        return render(request,self.template_name, {'object_list':elements})
+
 class RegionList(ListView):
     model = Region
     template_name = 'region/region.html'
+
 
 class GymList(ListView):
     model = Gym
