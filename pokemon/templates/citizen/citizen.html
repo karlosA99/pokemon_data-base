@@ -6,7 +6,7 @@
 
   {% block extrahead %}
   {% endblock %}
-    <link rel="icon" type="image/x-icon" href="../../static/img/pokeball.ico">
+  <link rel="icon" type="image/x-icon" href="../../static/img/pokeball.ico">
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -129,108 +129,106 @@
             <button type="button" style="float: right;" class="btn-close" onclick="exit()"
               data-bs-dismiss="alert"></button>
             <strong>Oh snap!</strong> We don't have any information about it. If you are admin, try insert some info <a
-              href="../citizen/">here</a>.
+              href="../admin/">here</a>.
           </div>
           {% endif %}
         </tbody>
       </table>
 
       <div class="col-3 filters">
-        <div class="row">
-
-          <h5 class="poke marg">Filters</h5>
-        </div>
-
-        <div class="row">
-          <div id="barra-lateral">
-            <ul>
-              <li class="sub-menu poke marg">Edad</a>
-                <ul>
-                  <li>
-                    <form>
-                      <input type="text" size="15" maxlength="30" placeholder="12">
-                    </form>
-                  </li>
-                </ul>
-              </li>
-              <li class="sub-menu poke marg">Sexo</a>
-                <ul>
-                  <input type="checkbox" id="F" name="F" value="F">
-                  <label for="F">F</label>
-                </ul>
-                <ul>
-                  <input type="checkbox" id="M" name="M" value="M">
-                  <label for="M">M</label>
-                </ul>
-              <li class="sub-menu poke marg">Region</a>
-                <ul>
-                  <li>
-                    <form>
-                      <input type="text" size="15" maxlength="30" placeholder="Kanto">
-                    </form>
-                  </li>
-                </ul>
-              </li>
-            </ul>
+        <form action="/citizen/" method="get" id="filters">
+          <div class="row">
+            <div class="column">
+              <h5 class="poke marg">Filters</h5>
+            </div>
+            <div class="column">
+              <button type="button" class="btn btn-primary poke">Apply</button>
+            </div>
           </div>
-        </div>
+
+          <div class="row">
+            <div id="barra-lateral">
+              <ul>
+                <li class="sub-menu poke marg">Age</a>
+                  <ul>
+                    <li>
+                      <input type="text" class="form-control" size="15" maxlength="30" placeholder="12" name="age">
+                    </li>
+                  </ul>
+                </li>
+                <li class="sub-menu poke marg">Gender</a>
+                  <ul>
+                     <li>
+                      <input type="text" class="form-control" size="15" maxlength="1" placeholder="F" name="gender">
+                    </li>
+                  </ul>
+                <li class="sub-menu poke marg">Region</a>
+                  <ul>
+                    <li>
+                      <input type="text" class="form-control" size="15" maxlength="1" placeholder="Kanto"  name="region">
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </form>
       </div>
-    </div>
 
 
-    {% block extrajs %}
-    {% endblock %}
+      {% block extrajs %}
+      {% endblock %}
 
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-      integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-      crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
-      integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
-      crossorigin="anonymous"></script>
-    <script src="{% static 'js/bootstrap.min (2).js' %}"></script>
-    <script src="{% static 'js/exit.js' %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+        crossorigin="anonymous"></script>
+      <script src="{% static 'js/bootstrap.min (2).js' %}"></script>
+      <script src="{% static 'js/exit.js' %}"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <style>
-      @font-face {
-        font-family: 'Pokemon Classic';
-        src: local('Pokemon Classic'),
-          local('Pokemon-Classic');
-      }
+      <style>
+        @font-face {
+          font-family: 'Pokemon Classic';
+          src: local('Pokemon Classic'),
+            local('Pokemon-Classic');
+        }
 
-      .poke {
-        font-family: 'Pokemon Classic';
-      }
+        .poke {
+          font-family: 'Pokemon Classic';
+        }
 
-      .marg {
-        margin: 20px;
-      }
+        .marg {
+          margin: 20px;
+        }
 
-      .dropdown-item:hover{
-        background-color:#5a5a5a;
-      }
-    
-    .filters li{
-        list-style-image: url("../../static/img/pokeball.ico");
-      }
-      li ul li{
-        list-style:none !important;
-      }
+        .dropdown-item:hover {
+          background-color: #5a5a5a;
+        }
 
-     .alert-danger{
-       background-color: rgba(241, 0, 0, 0.707);
-     }
+        .filters li {
+          list-style-image: url("../../static/img/pokeball.ico");
+        }
 
-       
-       input::placeholder{
-      color: rgba(87, 87, 87, 0.437) ;
-    }
+        li ul li {
+          list-style: none !important;
+        }
 
-    </style>
+        .alert-danger {
+          background-color: rgba(241, 0, 0, 0.707);
+        }
+
+
+        input::placeholder {
+          color: rgba(87, 87, 87, 0.437);
+        }
+      </style>
 
 
 </body>

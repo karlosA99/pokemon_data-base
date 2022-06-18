@@ -108,6 +108,7 @@
         <thead>
           <tr>
             <td>ID</td>
+            <td>Name</td>
             <td>Gym</td>
           </tr>
 
@@ -117,6 +118,7 @@
           {% for object in object_list %}
           <tr>
             <td>{{ object.id_Trainer }}</td>
+            <td>{{ object.name }}</td>
             <td>{{ object.id_Gym }}</td>
           </tr>
           {% endfor %}
