@@ -11,15 +11,25 @@ class Element(models.Model):
     name = models.CharField(primary_key= True , max_length= 30)
     strong_vs = models.ManyToManyField('self',blank= True)
 
+    def __str__(self) -> str:
+        return self.name
+
+
 #?Related with Region
 class Region(models.Model):
     id_Region = models.IntegerField(primary_key= True) #id_regon = region_code
     name = models.CharField(max_length = 30, null= False)
 
+    def __str__(self) -> str:
+        return self.name
+
 class Community(models.Model):
     id_Community = models.IntegerField(primary_key= True)
     id_Region = models.ForeignKey(Region, null= False,on_delete= models.RESTRICT)
     name = models.CharField(max_length= 30, null= False, default= '')
+
+    def __str__(self) -> str:
+        return self.name
 
 class City(models.Model):
     id_City = models.OneToOneField(Community,primary_key= True, on_delete= models.CASCADE)
@@ -34,6 +44,9 @@ class Citizen(models.Model):
     id_Community = models.ForeignKey(Community, on_delete= models.CASCADE, default= 0)
     born_region = models.ForeignKey(Region,on_delete= models.CASCADE)
 
+    def __str__(self) -> str:
+        return self.name
+
 class Gym(models.Model):
     id_Gym = models.IntegerField(primary_key= True)
     name = models.CharField(max_length= 30)
@@ -41,9 +54,15 @@ class Gym(models.Model):
     id_City = models.OneToOneField(City,on_delete= models.CASCADE)
     leader = models.OneToOneField(Citizen,on_delete= models.RESTRICT, null= False)
 
+    def __str__(self) -> str:
+        return self.name
+
 class Motion(models.Model):
     name = models.CharField(primary_key= True, max_length= 15)
     element_name = models.ForeignKey(Element, null= False, on_delete= models.CASCADE)
+
+    def __str__(self) -> str:
+        return self.name
 
 class Trainer(Citizen):
     id_Trainer = models.CharField(unique=True, max_length= 10)
@@ -61,6 +80,9 @@ class Species(models.Model):
     taught_motion = models.ManyToManyField(Motion,related_name= "%(class)s_taught_motion")
     region = models.ManyToManyField(Region)
 
+    def __str__(self) -> str:
+        return self.name
+
 class Pokemon(models.Model):
     id_Pokemon = models.AutoField(primary_key= True)
     height = models.DecimalField(decimal_places=2, max_digits= 7)
@@ -70,6 +92,9 @@ class Pokemon(models.Model):
     nature = models.CharField(max_length= 15)
     species_name = models.ForeignKey(Species, on_delete= models.CASCADE)
 
+    def __str__(self) -> str:
+        return self.id_Pokemon + ', ' + Species(self.species_name).name
+
 class CaughtPokemon(Pokemon):
     id_Trainer = models.ForeignKey(Trainer, on_delete= models.CASCADE)
     nickname = models.CharField(max_length= 15)
@@ -77,8 +102,10 @@ class CaughtPokemon(Pokemon):
     caught_level = models.IntegerField(default=1) #esto no deberia ser asi, deberia averiguar q bola con l on-off value
     actual_level = models.IntegerField(default=1)
     motion = models.ManyToManyField(Motion)
-    # class Meta:
-    #     unique_together = [['id_Trainer','id_Pokemon']]
+
+    def __str__(self) -> str:
+        return self.nickname
+
 class Duel(models.Model):
     trainer1 = models.ForeignKey(Trainer,on_delete= models.CASCADE,related_name= "%(class)s_trainer1")
     trainer2 = models.ForeignKey(Trainer,on_delete= models.CASCADE,related_name= "%(class)s_trainer2")
@@ -87,46 +114,9 @@ class Duel(models.Model):
     winner = models.ForeignKey(Trainer, on_delete= models.CASCADE)
     pokemons_played = models.ManyToManyField(CaughtPokemon)
 
+    def __str__(self) -> str:
+        return self.trainer1 + " vs " + self.trainer2
+
 class About(models.Model):
     pass
-
-# class Gym_Trainer(models.Model):
-#     id_Trainer = models.ForeignKey(Trainer, primary_key= True, on_delete= models.CASCADE)
-#     id_Gym = models.ForeignKey(Gym, on_delete= models.CASCADE)
-#     class Meta:
-#         unique_together = [['id_Trainer','id_Gym']]
-
-# class Species_Region(models.Model):
-#     name_species = models.ForeignKey(Species, primary_key= True, on_delete= models.CASCADE)
-#     id_Region = models.ForeignKey(Region, on_delete= models.CASCADE)
-#     class Meta:
-#         unique_together = [['name_species','id_Region']]
-
-# class Species_Motion(models.Model):
-#     name_species = models.ForeignKey(Species, primary_key= True, on_delete= models.CASCADE)
-#     name_motion = models.ForeignKey(Motion, on_delete= models.CASCADE)
-#     class Meta:
-#         unique_together = [['name_species','name_motion']]
-
-# class Species_Element(models.Model):
-#     name_species = models.ForeignKey(Species, primary_key= True, on_delete= models.CASCADE)
-#     name_element = models.ForeignKey(Element, on_delete= models.CASCADE)
-#     class Meta:
-#         unique_together = [['name_species','name_element']]
-
-
-# class Caught_Pokemon_Motion(models.Model):
-#     name_motion = models.ForeignKey(Motion, on_delete= models.CASCADE)
-#     id_Pokemon = models.ForeignKey(Pokemon, primary_key= True, on_delete= models.CASCADE)
-#     id_Trainer = models.ForeignKey(Trainer, on_delete= models.CASCADE)
-
-#     class Meta:
-#         unique_together = [['name_motion','id_Pokemon','id_Trainer']]
-
-
-
-
-
-
-
 
