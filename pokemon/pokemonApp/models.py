@@ -1,4 +1,5 @@
 from email.policy import default
+from unicodedata import name
 from django.db import models
 from django.forms import CharField
 from django.utils import timezone as tz
@@ -13,7 +14,6 @@ class Element(models.Model):
 
     def __str__(self) -> str:
         return self.name
-
 
 #?Related with Region
 class Region(models.Model):
@@ -99,7 +99,7 @@ class CaughtPokemon(Pokemon):
     id_Trainer = models.ForeignKey(Trainer, on_delete= models.CASCADE)
     nickname = models.CharField(max_length= 15)
     pokeball = models.CharField(max_length= 15)
-    caught_level = models.IntegerField(default=1) #esto no deberia ser asi, deberia averiguar q bola con l on-off value
+    caught_level = models.IntegerField(default=1)
     actual_level = models.IntegerField(default=1)
     motion = models.ManyToManyField(Motion)
 
