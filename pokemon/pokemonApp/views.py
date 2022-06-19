@@ -80,7 +80,7 @@ class CaughtPokemonList(ListView):
             caughtPokemons = caughtPokemons.filter(caught_level=int(request.GET['caught_level']))
         if 'actual_level' in request.GET and request.GET['actual_level'] != '':
             caughtPokemons = caughtPokemons.filter(actual_level=int(request.GET['actual_level']))
-        
+
         return render(request,self.template_name, {'object_list': caughtPokemons})
 
 
