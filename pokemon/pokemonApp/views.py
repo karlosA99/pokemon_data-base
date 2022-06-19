@@ -1,4 +1,5 @@
 from re import S
+from unittest import result
 from django.db import reset_queries
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
@@ -179,3 +180,38 @@ class DuelList(ListView):
 class AboutList(ListView):
     model = About
     template_name = 'about/about.html'
+
+
+class Query1(ListView):
+
+    template_name = '' #!rellenar
+
+
+    porcentage = 0
+    def get(self, request : HttpRequest)-> HttpResponse:
+        citizens = Citizen.objects.all()
+        trainers = Trainer.objects.all()
+
+        if 'region' in request.GET and request.GET['region'] != '':
+            citizens = citizens.filter(born_region__name=request.GET["region"])
+            trainers = trainers.filter(born_region__name=request.GET["region"])
+            count_citizen = citizens.count()
+            count_trainers = trainers.count()
+            if count_citizen > 0:
+                porcentage = (count_trainers * 100) / count_citizen
+
+        return render(self, self.template_name, {'object_list' : trainers,'porcentage' : porcentage})
+
+
+class Query2(ListView):
+    model = CaughtPokemon
+    template_name = ''  #!rellenar
+
+    def get(self,request : HttpRequest)-> HttpResponse:
+        caught_pokemons = CaughtPokemon.objects.all()
+
+        if 'trainer' in request.GET and request.GET['trainer'] != '':
+            caught_pokemons = caught_pokemons.filter(id_Trainer__name=request.GET['trainer'])
+
+        if 'element' in request.GEt and request.GET['trainer'] != '':
+            caught_pokemons = caught_pokemons.filter(species_name__strong_element__name= request.GET['element'])
