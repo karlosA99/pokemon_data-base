@@ -152,8 +152,6 @@ class SpeciesList(ListView):
         if 'region' in request.GET and request.GET['region'] != '':
             species = species.filter(region__name=request.GET['region'])
         if 'legendary' in request.GET and request.GET['legendary'] != '':
-            species = species.filter(legendary=request.GET['legendary'])
-        if 'legendary' in request.GET and request.GET['legendary'] != '':
             if request.GET['legendary'] == 'No':
                 is_legendary = False
             elif request.GET['legendary'] == 'Yes':

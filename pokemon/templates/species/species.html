@@ -6,7 +6,7 @@
 
   {% block extrahead %}
   {% endblock %}
-    <link rel="icon" type="image/x-icon" href="../../static/img/pokeball.ico">
+  <link rel="icon" type="image/x-icon" href="../../static/img/pokeball.ico">
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -47,7 +47,7 @@
               aria-haspopup="true" aria-expanded="false">Relevant</a>
             <!-- <div class="Table"> -->
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-               <a class="dropdown-item" href="{% url 'citizen' %}">Citizens</a>
+              <a class="dropdown-item" href="{% url 'citizen' %}">Citizens</a>
               <a class="dropdown-item" href="{% url 'trainer' %}">Trainers</a>
               <a class="dropdown-item" href="{% url 'pokemon' %}">Pokemons</a>
               <a class="dropdown-item" href="{% url 'caught_pokemon' %}">Caught Pokemons</a>
@@ -60,12 +60,12 @@
             </div>
           </li>
 
-           <li class="nav-item dropdown">
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown" href="#" role="button"
               aria-haspopup="true" aria-expanded="false">Table</a>
             <!-- <div class="Table"> -->
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-               <a class="dropdown-item" href="{% url 'citizen' %}">Citizens</a>
+              <a class="dropdown-item" href="{% url 'citizen' %}">Citizens</a>
               <a class="dropdown-item" href="{% url 'trainer' %}">Trainers</a>
               <a class="dropdown-item" href="{% url 'pokemon' %}">Pokemons</a>
               <a class="dropdown-item" href="{% url 'caught_pokemon' %}">Caught Pokemons</a>
@@ -88,15 +88,15 @@
               </div>
           </li> -->
           <li class="nav-item">
-            <a class="nav-link" href="about">About</a>
+            <a class="nav-link" href="../about">About</a>
           </li>
           <li style="position: absolute; top: 30px; right: 10px;">
             <div class="btn-group-vertical">
-              <button type="button" style="color: black ; background-color:rgb(251, 251, 251);"
-                class="btn btn-primary poke">Admin site</button>
+              <div class="btn btn-secondary" style="background-color:rgb(251, 251, 251)">
+                <a class="poke" style="color: black;" href="../admin/">Admin Site</a>
+              </div>
             </div>
           </li>
-
         </ul>
       </div>
     </div>
@@ -114,7 +114,7 @@
 
   <div id="customlay" class="container">
     <div class="row align-items-start">
-      <table class="col-9 bg-light poke marg">
+      <table class="col-9 bg-light poke marg f-size">
         <thead>
           <tr>
             <td>ID</td>
@@ -124,158 +124,174 @@
             <td>Legendary</td>
             <td>Natural Motion</td>
             <td>Taught Motion</td>
-            <td>Region</td>
+            <td>Regions</td>
           </tr>
 
         </thead>
         <tbody>
           {% if object_list %}
           {% for object in object_list %}
-          <tr>
+          <tr class="marg">
             <td>{{ object.id_species }}</td>
             <td>{{ object.name }}</td>
             <td>{{ object.strong_element }}</td>
             <td>{{ object.secundary_element }}</td>
             <td>{{ object.legendary }}</td>
-            <td>{{ object.natural_motion }}</td>
-            <td>{{ object.taught_motion }}</td>
-            <td>{{ object.region }}</td>
+            <td>{% for move in object.natural_motion.all %}
+              {{move.name}}, {% endfor %}</td>
+
+            <td>{% for move in object.taught_motion.all %}
+              {{move.name}}, {% endfor %}</td>
+
+            <td>{% for zone in object.region.all %}
+              {{zone.name}}, {% endfor %}</td>
+
           </tr>
           {% endfor %}
           {% else %}
           <div class="alert alert-dismissible alert-danger">
-            <button type="button" style="float: right;" class="btn-close" onclick="exit(this)" data-bs-dismiss="alert"></button>
+            <button type="button" style="float: right;" class="btn-close" onclick="exit(this)"
+              data-bs-dismiss="alert"></button>
             <strong>Oh snap!</strong> We don't have any information about it. If you are admin, try insert some info <a
-              href="../citizen/">here</a>.
+              href="../admin/">here</a>.
           </div>
           {% endif %}
         </tbody>
       </table>
 
-      <div class="col-1 filters">
-        <div class="row">
-
-          <h6 class="poke marg">Filters</h6>
-        </div>
-
-        <div class="row f-size">
-          <div id="barra-lateral">
-            <ul>
-              <li class="sub-menu poke marg">Name</a>
-                <ul>
-                  <li>
-                    <form>
-                      <input type="text" size="17" maxlength="30" placeholder="rat">
-                    </form>
-                  </li>
-                </ul>
-              </li>
-              <li class="sub-menu poke marg">Strong Element</a>
-                <ul>
-                  <li>
-                    <form>
-                      <input type="text" size="17" maxlength="30" placeholder="ice">
-                    </form>
-                  </li>
-                </ul>
-              </li>
-              <li class="sub-menu poke marg">Secundary Element</a>
-                <ul>
-                  <li>
-                    <form>
-                      <input type="text" size="17" maxlength="15" placeholder="water">
-                    </form>
-                  </li>
-                </ul>
-              </li>
-              <li class="sub-menu poke marg">Region</a>
-                <ul>
-                  <li>
-                    <form>
-                      <input type="text" size="17" maxlength="15" placeholder="Kanto">
-                    </form>
-                  </li>
-                </ul>
-              </li>
-              <form>
-              <li class="sub-menu poke marg">Is Legendary</a>
-                <ul>
-                  <input type="checkbox" id="Yes" name="Yes" value="Yes">
-                  <label for="Yes">Yes</label>
-                </ul>
-                <ul>
-                  <input type="checkbox" id="No" name="No" value="No">
-                  <label for="No">No</label>
-                </ul>
-                <ul>
-              </li>
-              </form>
-
-            </ul>
-            </li>
+      <div class="col-2 filters">
+        <form action="/species/" method="get" id="filter">
+          <div class="row">
+            <div class="column">
+              <h5 class="poke marg">Filters</h5>
+            </div>
+            <div class="column">
+              <button type="submit" class="btn btn-primary poke">Apply</button>
+            </div>
           </div>
-        </div>
+
+          <div class="row f-size">
+            <div id="barra-lateral">
+              <ul>
+                <li class="sub-menu poke marg">Name</a>
+                  <ul>
+                    <li>
+
+                      <input type="text" class="form-control" size="17" maxlength="30" name="name">
+
+                    </li>
+                  </ul>
+                </li>
+                <li class="sub-menu poke marg">Strong Element</a>
+                  <ul>
+                    <li>
+
+                      <input type="text" class="form-control" size="17" maxlength="30" name="strong_element">
+
+                    </li>
+                  </ul>
+                </li>
+                <li class="sub-menu poke marg">Secundary Element</a>
+                  <ul>
+                    <li>
+                      <input type="text" class="form-control" size="17" maxlength="30" name="secundary_element">
+                    </li>
+                  </ul>
+                </li>
+                <li class="sub-menu poke marg">Region</a>
+                  <ul>
+                    <li>
+                      <input type="text" class="form-control" size="17" maxlength="15" name="region">
+                    </li>
+                  </ul>
+                </li>
+                <li class="sub-menu poke marg">Is Legendary</a>
+                  <ul>
+                    <li>
+                      <input type="text" class="form-control" size="17" maxlength="15" name="legendary"
+                        placeholder="Yes/No">
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              </li>
+            </div>
+          </div>
+        </form>
       </div>
-    </div>
 
 
-    <style>
-      @font-face {
-        font-family: 'Pokemon Classic';
-        src: local('Pokemon Classic'),
-          local('Pokemon-Classic');
-      }
+      <style>
+        @font-face {
+          font-family: 'Pokemon Classic';
+          src: local('Pokemon Classic'),
+            local('Pokemon-Classic');
+        }
 
-      .poke {
-        font-family: 'Pokemon Classic';
-      }
+        .poke {
+          font-family: 'Pokemon Classic';
+        }
 
-      .marg {
-        margin: 10px;
-      }
+        .marg {
+          margin: 10px;
+        }
 
-      .f-size {
-        font-size: 10px
-      }
+        .f-size {
+          font-size: 8px
+        }
 
-      thead{margin: 0;
-       font-size: 9pt;
-       padding:0;}
-    .dropdown-item:hover{
-        background-color:#5a5a5a;
-      }
-     .filters li{
-        list-style-image: url("../../static/img/pokeball.ico");
-      }
-      li ul li{
-        list-style:none !important;
-      }
+        thead {
+          margin: 0;
+          font-size: 9pt;
+          padding: 0;
+        }
 
-     .alert-danger{
-       background-color: rgba(241, 0, 0, 0.707);
-     }
-      input::placeholder{
-        color: rgba(87, 87, 87, 0.437) ;
-    }
+        .dropdown-item:hover {
+          background-color: #5a5a5a;
+        }
 
-    </style>
-    {% block extrajs %}
-    {% endblock %}
+        .filters li {
+          list-style-image: url("../../static/img/pokeball.ico");
+        }
+
+        li ul li {
+          list-style: none !important;
+        }
+
+        .alert-danger {
+          background-color: rgba(241, 0, 0, 0.707);
+        }
+
+        input::placeholder {
+          color: rgba(87, 87, 87, 0.437);
+        }
 
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-      integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-      crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
-      integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
-      crossorigin="anonymous"></script>
-    <script src="{% static 'js/bootstrap.min (2).js' %}"></script>
-    <script src="{% static 'js/exit.js' %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    
+        thead td {
+          color: black;
+        }
+
+        input {
+          font-size: 10px !important;
+        }
+      </style>
+      {% block extrajs %}
+      {% endblock %}
+
+
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+        crossorigin="anonymous"></script>
+      <script src="{% static 'js/bootstrap.min (2).js' %}"></script>
+      <script src="{% static 'js/exit.js' %}"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
 
 </body>
 
