@@ -98,8 +98,8 @@ class CaughtPokemon(Pokemon):
     id_Trainer = models.ForeignKey(Trainer, on_delete= models.CASCADE)
     nickname = models.CharField(max_length= 15)
     pokeball = models.CharField(max_length= 15)
-    caught_level = models.IntegerField(default=1)
-    actual_level = models.IntegerField(default=1)
+    caught_level = models.IntegerField()
+    actual_level = models.IntegerField()
     motion = models.ManyToManyField(Motion)
 
     def __str__(self) -> str:
