@@ -1,4 +1,3 @@
-from email.policy import default
 from unicodedata import name
 from django.db import models
 from django.forms import CharField
@@ -92,7 +91,7 @@ class Pokemon(models.Model):
     species_name = models.ForeignKey(Species, on_delete= models.CASCADE)
 
     def __str__(self) -> str:
-        return self.id_Pokemon + ', ' + Species(self.species_name).name
+        return str(self.id_Pokemon) + '►' + str(self.species_name)
 
 class CaughtPokemon(Pokemon):
     id_Trainer = models.ForeignKey(Trainer, on_delete= models.CASCADE)

@@ -17,11 +17,12 @@ class CitizenList(ListView):
         citizen = Citizen.objects.all()
 
         if "name" in request.GET and request.GET["name"] != '':
-            citizen = citizen.filter(name=request.GET["name"])
+            citizen = citizen.filter(name=request.GET(["name"]))
         if "age" in request.GET and request.GET["age"] != '':
             citizen = citizen.filter(age= int(request.GET["age"]))
         if "gender" in request.GET and request.GET["gender"] != '':
             citizen = citizen.filter(sex= request.GET["gender"])
+<<<<<<< HEAD
 
             
         if "region" in request.GET and request.GET["region"] !='':
@@ -29,13 +30,43 @@ class CitizenList(ListView):
 
         return render(request, self.template_name, {'object_list': citizen})
 
+=======
+        if "region" in request.GET and request.GET['region'] !='':
+            citizen = citizen.filter(born_region__name=request.GET["region"])
+
+        return render(request, self.template_name, {'object_list': citizen})
+>>>>>>> 3b27f4335ed08433f63ff333c97db2ccdb91f80a
 class TrainerList(ListView):
     model = Trainer
     template_name = 'trainer/trainer.html'
 
+    def get(self, request : HttpRequest)-> HttpResponse:
+        trainer = Trainer.objects.all()
+        if 'gym_name' in request.GET and request.GET['gym_name'] != '':
+            trainer = trainer.filter(id_Gym__name=request.GET['gym_name'])
+
+        return render(request, self.template_name, {'object_list' : trainer})
+
 class PokemonList(ListView):
     model = Pokemon
     template_name = 'pokemon/pokemon.html'
+
+    # def get(self, request : HttpRequest)-> HttpResponse:
+    #     pokemons = Pokemon.objects.all()
+
+    #     if 'height' in request.GET and request.GET['height'] != '':
+    #         pokemons = pokemns.filter(height= request.GET['height'])
+    #     if 'weight' in request.GET and request.GET['weight'] != '':
+    #         pokemnos = pokemns.filter(weight= request.GET['weight'])
+    #     if 'nature' in request.GET and request.GET['nature'] != '':
+    #         pokemns = pokemns.filter(nature= request.GET['nature'])
+    #     if 'species' in request.GET and request.GET['species'] != '':
+    #         pokemns = pokemns.filter(species__name= request.GET['species'])
+    #     if 'gender' in request.GET and request.GET['gender'] != '':
+    #         pokemns = pokemns.filter(sex= request.GET['gender'])
+    #     if 'is_shiny' in request.GET and request.GET['is_shiny'] != '':
+    #         pokemns = pokemns.filter(shine= request.GET['is_shiny'])
+        
 
 class CaughtPokemonList(ListView):
     model = CaughtPokemon
