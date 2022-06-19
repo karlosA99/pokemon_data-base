@@ -45,7 +45,7 @@ class PokemonList(ListView):
 
     def get(self, request : HttpRequest)-> HttpResponse:
         pokemons = Pokemon.objects.all()
-
+        is_shiny = None
         if 'height' in request.GET and request.GET['height'] != '':
             pokemons = pokemons.filter(height= request.GET['height'])
         if 'weight' in request.GET and request.GET['weight'] != '':
@@ -53,13 +53,17 @@ class PokemonList(ListView):
         if 'nature' in request.GET and request.GET['nature'] != '':
             pokemons = pokemons.filter(nature= request.GET['nature'])
         if 'species' in request.GET and request.GET['species'] != '':
-            pokemons = pokemons.filter(species__name= request.GET['species'])
+            pokemons = pokemons.filter(species_name__name= request.GET['species'])
         if 'gender' in request.GET and request.GET['gender'] != '':
             pokemons = pokemons.filter(sex= request.GET['gender'])
         if 'shiny' in request.GET and request.GET['shiny'] != '':
-            pokemons = pokemons.filter(shine= request.GET['shiny'])
+            if request.GET['shiny'] == 'No':
+                is_shiny = False
+            elif request.GET['shiny'] == 'Yes':
+                is_shiny = True
+            pokemons = pokemons.filter(shine= is_shiny)
 
-        return redirect(pokemons,self.template_name, {'object_list': pokemons})
+        return render(request,self.template_name, {'object_list': pokemons})
 
 class CaughtPokemonList(ListView):
     model = CaughtPokemon
@@ -76,6 +80,8 @@ class CaughtPokemonList(ListView):
             caughtPokemons = caughtPokemons.filter(caught_level=int(request.GET['caught_level']))
         if 'actual_level' in request.GET and request.GET['actual_level'] != '':
             caughtPokemons = caughtPokemons.filter(actual_level=int(request.GET['actual_level']))
+        
+        return render(request,self.template_name, {'object_list': caughtPokemons})
 
 
 class Community(ListView):
