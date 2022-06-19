@@ -166,6 +166,16 @@ class DuelList(ListView):
     model = Duel
     template_name = 'duel/duel.html'
 
+    def get(self, request :HttpRequest)-> HttpResponse:
+        duel = Duel.objects.all()
+
+        if 'winner' in request.GET and request.GET['winner'] != '':
+            duel = duel.filter(winner__name=request.GET['winner'])
+        if 'region' in request.GET and request.GET['region'] != '':
+            duel = duel.filter(region__name=request.GET['region'])
+
+        return render(request,self.template_name, {'object_list' : duel})
+
 class AboutList(ListView):
     model = About
     template_name = 'about/about.html'
