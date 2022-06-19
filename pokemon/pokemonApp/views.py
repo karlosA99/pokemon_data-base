@@ -56,7 +56,7 @@ class PokemonList(ListView):
     #         pokemns = pokemns.filter(sex= request.GET['gender'])
     #     if 'is_shiny' in request.GET and request.GET['is_shiny'] != '':
     #         pokemns = pokemns.filter(shine= request.GET['is_shiny'])
-        
+    #//
 
 class CaughtPokemonList(ListView):
     model = CaughtPokemon
