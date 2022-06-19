@@ -17,7 +17,7 @@ class Element(models.Model):
 
 #?Related with Region
 class Region(models.Model):
-    id_Region = models.IntegerField(primary_key= True) #id_regon = region_code
+    id_Region = models.CharField(primary_key= True, max_length=30) #id_regon = region_code
     name = models.CharField(max_length = 30, null= False)
 
     def __str__(self) -> str:
@@ -65,7 +65,6 @@ class Motion(models.Model):
         return self.name
 
 class Trainer(Citizen):
-    id_Trainer = models.CharField(unique=True, max_length= 10)
     id_Gym = models.ForeignKey(Gym, null= True, on_delete= models.SET_NULL,blank= True,related_name="%(class)s_id_Gym")
     oponent = models.ManyToManyField('self',through='Duel',through_fields=['trainer1', 'trainer1'])
     medals = models.ManyToManyField(Gym, blank= True,related_name= "%(class)s_medals")

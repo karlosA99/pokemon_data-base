@@ -78,15 +78,15 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="about">About</a>
+            <a class="nav-link" href="../about">About</a>
           </li>
-          <li style="position: absolute; top: 20px; right: 10px;">
+          <li style="position: absolute; bottom: 10px; top: 30px; right: 10px;">
             <div class="btn-group-vertical">
-              <button type="button" style="color: black ; background-color:rgb(251, 251, 251);"
-                class="btn btn-primary poke">Admin site</button>
+              <div class="btn btn-secondary" style="background-color:rgb(251, 251, 251)">
+                <a class="poke" style="color: black;" href="../admin/">Admin Site</a>
+              </div>
             </div>
           </li>
-
         </ul>
       </div>
     </div>
@@ -117,7 +117,7 @@
           {% if object_list %}
           {% for object in object_list %}
           <tr>
-            <td>{{ object.id_Trainer }}</td>
+            <td>{{ object.id_Citizen }}</td>
             <td>{{ object.name }}</td>
             <td>{{ object.id_Gym }}</td>
           </tr>
