@@ -32,6 +32,7 @@ class Community(models.Model):
 
 class City(models.Model):
     id_City = models.OneToOneField(Community,primary_key= True, on_delete= models.CASCADE)
+
 class Village(models.Model):
     id_village = models.OneToOneField(Community, primary_key= True,on_delete= models.CASCADE)
 
