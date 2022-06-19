@@ -22,20 +22,12 @@ class CitizenList(ListView):
             citizen = citizen.filter(age= int(request.GET["age"]))
         if "gender" in request.GET and request.GET["gender"] != '':
             citizen = citizen.filter(sex= request.GET["gender"])
-<<<<<<< HEAD
-
             
         if "region" in request.GET and request.GET["region"] !='':
             citizen = citizen.filter(born_region__name=request.GET["region"])
 
         return render(request, self.template_name, {'object_list': citizen})
 
-=======
-        if "region" in request.GET and request.GET['region'] !='':
-            citizen = citizen.filter(born_region__name=request.GET["region"])
-
-        return render(request, self.template_name, {'object_list': citizen})
->>>>>>> 3b27f4335ed08433f63ff333c97db2ccdb91f80a
 class TrainerList(ListView):
     model = Trainer
     template_name = 'trainer/trainer.html'
