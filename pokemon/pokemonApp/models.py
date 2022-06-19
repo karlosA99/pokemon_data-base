@@ -108,13 +108,13 @@ class CaughtPokemon(Pokemon):
 class Duel(models.Model):
     trainer1 = models.ForeignKey(Trainer,on_delete= models.CASCADE,related_name= "%(class)s_trainer1")
     trainer2 = models.ForeignKey(Trainer,on_delete= models.CASCADE,related_name= "%(class)s_trainer2")
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField()
     region = models.ForeignKey(Region,on_delete= models.CASCADE)
     winner = models.ForeignKey(Trainer, on_delete= models.CASCADE)
     pokemons_played = models.ManyToManyField(CaughtPokemon)
 
     def __str__(self) -> str:
-        return self.trainer1 + " vs " + self.trainer2
+        return str(self.trainer1) + " vs " + str(self.trainer2)
 
 class About(models.Model):
     pass
