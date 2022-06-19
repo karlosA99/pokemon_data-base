@@ -74,11 +74,11 @@ class CaughtPokemonList(ListView):
 
         if 'trainer' in request.GET and request.GET['trainer'] != '':
             caughtPokemons = caughtPokemons.filter(id_Trainer__name=request.GET['trainer'])
-        if 'pokeball' in request.GET and request.GET['trainer'] != '':
+        if 'pokeball' in request.GET and request.GET['pokeball'] != '':
             caughtPokemons = caughtPokemons.filter(pokeball=request.GET['pokeball'])
         if 'caught_level' in request.GET and request.GET['caught_level'] != '':
             caughtPokemons = caughtPokemons.filter(caught_level=int(request.GET['caught_level']))
-        if 'actual_level' in request.GET and request.GET['actual_level'] != '':
+        if 'actual_level' in request.GET and request.GET['actual_level']:
             caughtPokemons = caughtPokemons.filter(actual_level=int(request.GET['actual_level']))
 
         return render(request,self.template_name, {'object_list': caughtPokemons})
@@ -160,7 +160,6 @@ class SpeciesList(ListView):
             species = species.filter(legendary= is_legendary)
 
         return render(request,self.template_name, {'object_list' : species})
-        
 
 
 class DuelList(ListView):
