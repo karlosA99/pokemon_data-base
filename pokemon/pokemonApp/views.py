@@ -76,7 +76,7 @@ class CaughtPokemonList(ListView):
             caughtPokemons = caughtPokemons.filter(id_Trainer__name=request.GET['trainer'])
         if 'pokeball' in request.GET and request.GET['trainer'] != '':
             caughtPokemons = caughtPokemons.filter(pokeball=request.GET['pokeball'])
-        if 'caugth_level' in request.GET and request.GET['caught_level'] != '':
+        if 'caught_level' in request.GET and request.GET['caught_level'] != '':
             caughtPokemons = caughtPokemons.filter(caught_level=int(request.GET['caught_level']))
         if 'actual_level' in request.GET and request.GET['actual_level'] != '':
             caughtPokemons = caughtPokemons.filter(actual_level=int(request.GET['actual_level']))
@@ -136,6 +136,31 @@ class MotionList(ListView):
 class SpeciesList(ListView):
     model = Gym
     template_name = 'species/species.html'
+
+    def get(self,request : HttpRequest)-> HttpResponse:
+        species = Species.objects.all()
+
+
+        is_legendary = None
+        if 'name' in request.GET and request.GET['name'] != '':
+            species = species.filter(name=request.GET['name'])
+        if 'strong_element' in request.GET and request.GET['strong_element'] != '':
+            species = species.filter(strong_element__name=request.GET['strong_element'])
+        if 'secundary_element' in request.GET and request.GET['secundary_element'] != '':
+            species = species.filter(secundary_element__name=request.GET['secundary_element'])
+        if 'region' in request.GET and request.GET['region'] != '':
+            species = species.filter(region__name=request.GET['region'])
+        if 'legendary' in request.GET and request.GET['legendary'] != '':
+            species = species.filter(legendary=request.GET['legendary'])
+        if 'legendary' in request.GET and request.GET['legendary'] != '':
+            if request.GET['legendary'] == 'No':
+                is_legendary = False
+            elif request.GET['legendary'] == 'Yes':
+                is_legendary = True
+            species = species.filter(legendary= is_legendary)
+
+        return render(request,self.template_name, {'object_list' : species})
+        
 
 
 class DuelList(ListView):
