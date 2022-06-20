@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
 from django.template import loader
 from django.views.generic import ListView
+from sympy import re
 from pokemonApp.models import *
 
 
@@ -220,13 +221,31 @@ class Query3(ListView):
     def get(self,request : HttpRequest)-> HttpResponse:
         caught_pokemons = CaughtPokemon.objects.all()
 
-        if 'qtrainer' in request.GET and request.GET['qtrainer'] != '':
-            caught_pokemons = caught_pokemons.filter(id_Trainer__name=request.GET['qtrainer'])
 
         if 'qspecies' in request.GET and request.GET['qspecies'] !='':
-            caught_pokemons = caught_pokemons.filter(species_name=request.GET['qspecies']).order_by('actual_level')
+            caught_pokemons = caught_pokemons.filter(species_name__name=request.GET['qspecies']).order_by('actual_level')
 
 
-        return render(request,self.template_name, {'caught_pokemons' : caught_pokemons})
+        return render(request,self.template_name, {'object_list' : caught_pokemons})
 
 
+class Query(ListView):
+    template_name = '' #!rellenar
+
+    def get(self,request : HttpRequest)-> HttpResponse:
+        regions = Region.objects.all()
+        trainers = Trainer.objects.all()
+
+        trainer_regional_league = []
+        for _ in regions:
+            trainer_regional_league.append([])
+
+        dict_regions_index = {}
+        for x in range(len(regions)):
+            dict_regions_index[regions[x]] = x
+
+        for trainer in trainers:
+            if trainer.medals.count() == 8:
+                trainer_regional_league[dict_regions_index[trainer.born_region]].append(trainer)
+
+        return render(request,self.template_name,{'object_list': regions,'trainer_regional_league': trainer_regional_league})
