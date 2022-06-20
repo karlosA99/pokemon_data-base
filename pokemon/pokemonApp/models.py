@@ -41,11 +41,15 @@ class City(models.Model):
     id_City = models.OneToOneField(
         Community, primary_key=True, on_delete=models.CASCADE)
 
-
+    def __str__(self) -> str:
+        return str(self.id_City)
 
 class Village(models.Model):
     id_village = models.OneToOneField(
         Community, primary_key=True, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return str(self.id_village)
 
 
 class Citizen(models.Model):
@@ -86,10 +90,16 @@ class NaturalMotion(models.Model):
     name = models.OneToOneField(
         Motion, primary_key=True, on_delete=models.CASCADE)
 
+    def __str__(self) -> str:
+        return name
+
 
 class TaughtMotion(models.Model):
     name = models.OneToOneField(
         Motion, primary_key=True, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return name
 
 
 class Trainer(Citizen):
