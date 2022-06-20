@@ -1,5 +1,5 @@
 from django.contrib import admin
-from pokemonApp.models import CaughtPokemon, Citizen, City, Community, Duel, Element, Gym, Motion, Pokemon, Region, Species, Trainer, Village
+from pokemonApp.models import CaughtPokemon, Citizen, City, Community, Duel, Element, Gym, Motion, NaturalMotion, Pokemon, Region, Species, TaughtMotion, Trainer, Village
 
 # Register your models here.
 admin.site.register(Region)
@@ -15,3 +15,5 @@ admin.site.register(Species)
 admin.site.register(Pokemon)
 admin.site.register(CaughtPokemon)
 admin.site.register(Duel)
+admin.site.register(NaturalMotion)
+admin.site.register(TaughtMotion)
