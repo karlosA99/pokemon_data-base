@@ -181,28 +181,24 @@ class AboutList(ListView):
 
 
 class Query1(ListView):
-
+    model = Trainer
     template_name = '' #!rellenar
 
 
     def get(self, request : HttpRequest)-> HttpResponse:
-        porcentage = []
+        porcentage = 0
         citizens = Citizen.objects.all()
         trainers = Trainer.objects.all()
-        result = 0
 
         if 'region' in request.GET and request.GET['region'] != '':
-            citizens = citizens.filter(born_region__name=request.GET["region"])
+            citizens_count = citizens.filter(born_region__name=request.GET["region"]).count()
             trainers = trainers.filter(born_region__name=request.GET["region"])
             count_citizen = citizens.count()
             count_trainers = trainers.count()
             if count_citizen > 0:
-                result = (count_trainers * 100) / count_citizen
+                porcentage = (count_trainers * 100) / count_citizen
 
-        for t in trainers:
-            porcentage.append(result)
-
-        return render(self, self.template_name, {'object_list' : trainers,'porcentage' : porcentage})
+        return render(request, self.template_name, {'object_list' : trainers,'porcentage' : porcentage})
         #todo WAITING FOR TESTING
 
 class Query2(ListView):
@@ -217,7 +213,13 @@ class Query2(ListView):
 
         if 'element' in request.GEt and request.GET['trainer'] != '':
             caught_pokemons = caught_pokemons.filter(species_name__strong_element__name= request.GET['element'])
+
+        return render(request,self.template_name,{'object_list' : caught_pokemons})
         #todo WAITING FOR TESTING
 
+# class Query3(ListView):
+#     template_name = ''  #!rellenar
+
+#     def get(self,request : HttpRequest)-> HttpResponse:
 
 
