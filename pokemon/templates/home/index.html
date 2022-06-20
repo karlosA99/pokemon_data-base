@@ -30,11 +30,10 @@
 </head>
 {%endblock head%}
 
-<body onload="playtheme()">
+<body>
 
 
   {% block navbar %}
-
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid poke">
       <a class="navbar-brand" href="#">POKEBASE</a>
@@ -57,15 +56,8 @@
             </a>
           </li>
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown" href="#" role="button"
-              aria-haspopup="true" aria-expanded="false">Relevant</a>
-            <!-- <div class="Table"> -->
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{% url 'citizen' %}">citizen</a>
-              <a class="dropdown-item" href="{% url 'trainer' %}">trainer</a>
-              <a class="dropdown-item" href="{% url 'pokemon' %}">pokemon</a>
-            </div>
+          <li class="nav-item">
+            <a class="nav-link" href="../relevant">Relevant</a>
           </li>
 
           <li class="nav-item dropdown">
@@ -81,18 +73,19 @@
               <a class="dropdown-item" href="{% url 'motion' %}">Motions</a>
               <a class="dropdown-item" href="{% url 'region' %}">Regions</a>
               <a class="dropdown-item" href="{% url 'species' %}">Species</a>
-              <a class="dropdown-item" href="{% url 'duel' %}">Duels</a>
               <a class="dropdown-item" href="{% url 'element' %}">Elements</a>
               <a class="dropdown-item" href="{% url 'duel' %}">Duels</a>
+          
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="about">About</a>
+            <a class="nav-link" href="../about">About</a>
           </li>
           <li style="position: absolute; top: 10px; right: 10px;">
             <div class="btn-group-vertical">
-              <button type="button" href="admin" style="color: black ; background-color:rgb(251, 251, 251);"
-                class="btn btn-primary poke" role="botton">Admin site</button>
+              <div class="btn btn-secondary" style="background-color:rgb(251, 251, 251)">
+                <a class="poke" style="color: black;" href="../admin/">Admin Site</a>
+              </div>
             </div>
           </li>
 
@@ -100,6 +93,7 @@
       </div>
     </div>
   </nav>
+
 
   {% endblock navbar%}
   {%block content%}
@@ -116,7 +110,6 @@
 
   {%block style%}
   <style>
-
     @font-face {
       font-family: 'Pokemon Classic';
       src: local('Pokemon Classic'),
@@ -176,9 +169,20 @@
     }
 
     @keyframes continue {
-      0% {right: 0;top: 0px;}
-      50% {right: 0;top: 15px;}
-      100% {right: 0;top: 0px;}
+      0% {
+        right: 0;
+        top: 0px;
+      }
+
+      50% {
+        right: 0;
+        top: 15px;
+      }
+
+      100% {
+        right: 0;
+        top: 0px;
+      }
     }
   </style>
   {%endblock style%}
@@ -187,22 +191,8 @@
 
 
 </body>
-  {% block extrajs %}
-<script>
- 
-  function playtheme() {
-  
-    var sound = new Howl({
-      src: ['static/aud/maintheme.wav'],
-      volume: 1.0,
-      onend: function () {
-        sound.play()
-      }
-    });
-    sound.play()
-   
-  }
-    
-</script>
-  {% endblock %}
+{% block extrajs %}
+
+{% endblock %}
+
 </html>

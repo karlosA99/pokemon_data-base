@@ -2,7 +2,6 @@ from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
 from django.template import loader
 from django.views.generic import ListView
-from sympy import re
 from pokemonApp.models import *
 from pokemonApp.tools import check_int_integrity
 
@@ -179,10 +178,13 @@ class AboutList(ListView):
     model = About
     template_name = 'about/about.html'
 
+class RelevantList(ListView):
+    model = Relevant
+    template_name = 'relevant/relevant.html'
 
 class Query1(ListView):
     model = Trainer
-    template_name = '' #!rellenar
+    template_name = 'relevant/porcentage.html' #!rellenar
 
 
     def get(self, request : HttpRequest)-> HttpResponse:
@@ -190,9 +192,9 @@ class Query1(ListView):
         citizens = Citizen.objects.all()
         trainers = Trainer.objects.all()
 
-        if 'region' in request.GET and request.GET['region'] != '':
-            citizens_count = citizens.filter(born_region__name=request.GET["region"]).count()
-            trainers = trainers.filter(born_region__name=request.GET["region"])
+        if 'qregion' in request.GET and request.GET['qregion'] != '':
+            citizens = citizens.filter(born_region__name=request.GET["qregion"])
+            trainers = trainers.filter(born_region__name=request.GET["qregion"])
             count_citizen = citizens.count()
             count_trainers = trainers.count()
             if count_citizen > 0:
@@ -202,23 +204,23 @@ class Query1(ListView):
 
 class Query2(ListView):
     model = CaughtPokemon
-    template_name = ''  #!rellenar
+    template_name = 'relevant/pokdetails.html'  #!rellenar
 
     def get(self,request : HttpRequest)-> HttpResponse:
         caught_pokemons = CaughtPokemon.objects.all()
 
-        if 'trainer' in request.GET and request.GET['trainer'] != '':
-            caught_pokemons = caught_pokemons.filter(id_Trainer__name=request.GET['trainer'])
+        if 'qtrainer' in request.GET and request.GET['qtrainer'] != '':
+            caught_pokemons = caught_pokemons.filter(id_Trainer__name=request.GET['qtrainer'])
 
-        if 'element' in request.GEt and request.GET['trainer'] != '':
-            caught_pokemons = caught_pokemons.filter(species_name__strong_element__name= request.GET['element'])
+        if 'qelement' in request.GET and request.GET['qelement'] != '':
+            caught_pokemons = caught_pokemons.filter(species_name__strong_element__name= request.GET['qelement'])
 
         return render(request,self.template_name,{'object_list' : caught_pokemons})
         #todo WAITING FOR TESTING
 
 class Query3(ListView):
     model = CaughtPokemon
-    template_name = ''  #!rellenar
+    template_name = 'relevant/pokelevels.html'  #!rellenar
 
     def get(self,request : HttpRequest)-> HttpResponse:
         caught_pokemons = CaughtPokemon.objects.all()
@@ -231,8 +233,8 @@ class Query3(ListView):
         return render(request,self.template_name, {'object_list' : caught_pokemons})
 
 
-class Query(ListView):
-    template_name = '' #!rellenar
+class Query4(ListView):
+    template_name = 'relevant/league.html' #!rellenar
 
     def get(self,request : HttpRequest)-> HttpResponse:
         regions = Region.objects.all()

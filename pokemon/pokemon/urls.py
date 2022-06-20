@@ -32,5 +32,10 @@ urlpatterns = [
     path('species/', vi.SpeciesList.as_view(), name='species'),
     path('duel/', vi.DuelList.as_view(), name='duel'),
     path('about/', vi.AboutList.as_view(), name='about'),
+    path('relevant/', vi.RelevantList.as_view(), name='relevant'),
+    path('porcentage/', vi.Query1.as_view(), name='porcentage'),
+    path('pokdetails/', vi.Query2.as_view(), name='pokdetails'),
+    path('pokelevels/', vi.Query3.as_view(), name='pokelevels'),
+    path('league/', vi.Query4.as_view(), name='league'),
 
 ]
