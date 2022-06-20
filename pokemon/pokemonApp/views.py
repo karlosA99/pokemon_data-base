@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.template import loader
 from django.views.generic import ListView
 from pokemonApp.models import *
+from pokemonApp.tools import check_int_integrity
 
 
 def index(request):
@@ -17,7 +18,7 @@ class CitizenList(ListView):
 
         if "name" in request.GET and request.GET["name"] != '':
             citizen = citizen.filter(name=request.GET(["name"]))
-        if "age" in request.GET and request.GET["age"] != '':
+        if "age" in request.GET and request.GET["age"] != '' and check_int_integrity(request.GET["age"], 'int'):
             citizen = citizen.filter(age= int(request.GET["age"]))
         if "gender" in request.GET and request.GET["gender"] != '':
             citizen = citizen.filter(sex= request.GET["gender"])
@@ -44,9 +45,9 @@ class PokemonList(ListView):
     def get(self, request : HttpRequest)-> HttpResponse:
         pokemons = Pokemon.objects.all()
         is_shiny = None
-        if 'height' in request.GET and request.GET['height'] != '':
+        if 'height' in request.GET and request.GET['height'] != '' and check_int_integrity(request.GET["height"], 'decimal'):
             pokemons = pokemons.filter(height= request.GET['height'])
-        if 'weight' in request.GET and request.GET['weight'] != '':
+        if 'weight' in request.GET and request.GET['weight'] != '' and check_int_integrity(request.GET["weight"], 'decimal'):
             pokemons = pokemons.filter(weight= request.GET['weight'])
         if 'nature' in request.GET and request.GET['nature'] != '':
             pokemons = pokemons.filter(nature= request.GET['nature'])
@@ -74,9 +75,9 @@ class CaughtPokemonList(ListView):
             caughtPokemons = caughtPokemons.filter(id_Trainer__name=request.GET['trainer'])
         if 'pokeball' in request.GET and request.GET['pokeball'] != '':
             caughtPokemons = caughtPokemons.filter(pokeball=request.GET['pokeball'])
-        if 'caught_level' in request.GET and request.GET['caught_level'] != '':
+        if 'caught_level' in request.GET and request.GET['caught_level'] != '' and check_int_integrity(request.GET["caught_level"], 'int'):
             caughtPokemons = caughtPokemons.filter(caught_level=int(request.GET['caught_level']))
-        if 'actual_level' in request.GET and request.GET['actual_level']:
+        if 'actual_level' in request.GET and request.GET['actual_level'] and check_int_integrity(request.GET["actual_level"], 'int'):
             caughtPokemons = caughtPokemons.filter(actual_level=int(request.GET['actual_level']))
 
         return render(request,self.template_name, {'object_list': caughtPokemons})
@@ -173,6 +174,7 @@ class DuelList(ListView):
         return render(request,self.template_name, {'object_list' : duel})
 
 class AboutList(ListView):
+
     model = About
     template_name = 'about/about.html'
 
@@ -210,7 +212,7 @@ class Query2(ListView):
         if 'qtrainer' in request.GET and request.GET['qtrainer'] != '':
             caught_pokemons = caught_pokemons.filter(id_Trainer__name=request.GET['qtrainer'])
 
-        if 'qelement' in request.GET and request.GET['qtrainer'] != '':
+        if 'qelement' in request.GET and request.GET['qelement'] != '':
             caught_pokemons = caught_pokemons.filter(species_name__strong_element__name= request.GET['qelement'])
 
         return render(request,self.template_name,{'object_list' : caught_pokemons})
@@ -223,6 +225,7 @@ class Query3(ListView):
     def get(self,request : HttpRequest)-> HttpResponse:
         caught_pokemons = CaughtPokemon.objects.all()
 
+
         if 'qspecies' in request.GET and request.GET['qspecies'] !='':
             caught_pokemons = caught_pokemons.filter(species_name__name=request.GET['qspecies']).order_by('actual_level')
 
@@ -230,3 +233,23 @@ class Query3(ListView):
         return render(request,self.template_name, {'object_list' : caught_pokemons})
 
 
+class Query4(ListView):
+    template_name = 'relevant/league.html' #!rellenar
+
+    def get(self,request : HttpRequest)-> HttpResponse:
+        regions = Region.objects.all()
+        trainers = Trainer.objects.all()
+
+        trainer_regional_league = []
+        for _ in regions:
+            trainer_regional_league.append([])
+
+        dict_regions_index = {}
+        for x in range(len(regions)):
+            dict_regions_index[regions[x]] = x
+
+        for trainer in trainers:
+            if trainer.medals.count() == 8:
+                trainer_regional_league[dict_regions_index[trainer.born_region]].append(trainer)
+
+        return render(request,self.template_name,{'object_list': regions,'trainer_regional_league': trainer_regional_league})

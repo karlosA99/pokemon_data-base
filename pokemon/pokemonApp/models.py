@@ -9,7 +9,7 @@ from django.utils import timezone as tz
 
 class Element(models.Model):
     name = models.CharField(primary_key= True , max_length= 30)
-    strong_vs = models.ManyToManyField('self',blank= True)
+    strong_vs = models.ManyToManyField('self',blank= True,symmetrical=False)
 
     def __str__(self) -> str:
         return self.name
