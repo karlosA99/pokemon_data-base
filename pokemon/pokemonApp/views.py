@@ -4,6 +4,7 @@ from django.template import loader
 from django.views.generic import ListView
 from pokemonApp.models import *
 from pokemonApp.tools import check_int_integrity
+from django.db.models import Count
 
 
 def index(request):
@@ -253,3 +254,28 @@ class Query4(ListView):
                 trainer_regional_league[dict_regions_index[trainer.born_region]].append(trainer)
 
         return render(request,self.template_name,{'object_list': regions,'trainer_regional_league': trainer_regional_league})
+
+class Query5(ListView):
+    model = Duel
+    template_name = ''#! rellenar
+
+    def get(self,request : HttpRequest)-> HttpResponse:
+        regions = Region.objects.all()
+        duels = Duel.objects.all()
+
+        result = []
+        for region in regions:
+            r1 = duels.filter(region__name = 'region'))
+            d1 = r1.values('winner_id__name').annotate(Count('winner_id__name')).order_by('-winner_id__name__count')[:3]
+            result.append(d1)
+
+        return render(request,self.template_name, {'object_list':regions, 'winners' : result})
+
+
+
+
+
+
+
+
+
