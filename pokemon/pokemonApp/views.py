@@ -189,10 +189,9 @@ class Query1(ListView):
 
 
     def get(self, request : HttpRequest)-> HttpResponse:
-        porcentage = []
+        porcentage = 0
         citizens = Citizen.objects.all()
         trainers = Trainer.objects.all()
-        result = 0
 
         if 'qregion' in request.GET and request.GET['qregion'] != '':
             citizens = citizens.filter(born_region__name=request.GET["qregion"])
@@ -200,27 +199,30 @@ class Query1(ListView):
             count_citizen = citizens.count()
             count_trainers = trainers.count()
             if count_citizen > 0:
-                result = (count_trainers * 100) / count_citizen
-
-        for t in trainers:
-            porcentage.append(result)
+                porcentage = (count_trainers * 100) / count_citizen
 
         return render(request, self.template_name, {'object_list' : trainers,'porcentage' : porcentage})
         #todo WAITING FOR TESTING
 
 class Query2(ListView):
     model = CaughtPokemon
-    template_name = ''  #!rellenar
+    template_name = 'relevant/pokdetails.html'  #!rellenar
 
     def get(self,request : HttpRequest)-> HttpResponse:
         caught_pokemons = CaughtPokemon.objects.all()
 
-        if 'trainer' in request.GET and request.GET['trainer'] != '':
-            caught_pokemons = caught_pokemons.filter(id_Trainer__name=request.GET['trainer'])
+        if 'qtrainer' in request.GET and request.GET['qtrainer'] != '':
+            caught_pokemons = caught_pokemons.filter(id_Trainer__name=request.GET['qtrainer'])
 
-        if 'element' in request.GEt and request.GET['trainer'] != '':
-            caught_pokemons = caught_pokemons.filter(species_name__strong_element__name= request.GET['element'])
+        if 'qelement' in request.GET and request.GET['qtrainer'] != '':
+            caught_pokemons = caught_pokemons.filter(species_name__strong_element__name= request.GET['qelement'])
+
+        return render(request,self.template_name,{'object_list' : caught_pokemons})
         #todo WAITING FOR TESTING
 
+# class Query3(ListView):
+#     template_name = ''  #!rellenar
+
+#     def get(self,request : HttpRequest)-> HttpResponse:
 
 

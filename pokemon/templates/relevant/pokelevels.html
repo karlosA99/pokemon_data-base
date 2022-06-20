@@ -29,9 +29,9 @@
 <table class="col-12 bg-light poke marg">
     <thead>
         <tr>
-            <td>Trainers</td>
+            <td>Nickname</td>
 
-            <td>Porcentage at the region</td>
+            <td>Species</td>
         </tr>
 
     </thead>
@@ -40,12 +40,13 @@
         {% for object in object_list %}
         <tr>
 
-            <td>{{object.name}}</td>
-
+            <td>
+                {{object.nickname}}
+            </td>
 
 
             <td>
-                {{porcentage}}
+                {{object.species_name}}
             </td>
 
         </tr>
@@ -66,16 +67,17 @@
     </tbody>
 </table>
 
-<form action="/porcentage/" method="get" id="q1">
+<form action="/pokelevels/" method="get" id="q1">
     <div id="pager" class="poke dialog-panel" class="row" class="col-12 filters" id="center-page poke">
 
         <div class="querys">
             <ul>
                 <li>
-
-                    <input style="width:30% ;" type="text" class="form-control" size="4" maxlength="30"
-                        placeholder="Insert region name" name="qregion">
-
+                    
+                    <input style="width:30% ;" type="text" class="form-control" size="4" maxlength="15"
+                        placeholder="Insert species name" name="qspecies">
+                    <input style="width:30% ;" type="text" class="form-control" size="4" maxlength="15"
+                        placeholder="Insert trainer name" name="qtrainer">
                     <button type="submit" class="btn btn-primary poke">Show results</button>
 
                 </li>
