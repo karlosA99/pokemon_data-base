@@ -114,7 +114,8 @@ class Species(models.Model):
     taught_motion = models.ManyToManyField(
         TaughtMotion, related_name="%(class)s_taught_motion")
     region = models.ManyToManyField(Region)
-
+    motion = models.ManyToManyField(
+        Motion, related_name="%(class)s_motion")
     def __str__(self) -> str:
         return self.name
 
@@ -138,8 +139,8 @@ class CaughtPokemon(Pokemon):
     pokeball = models.CharField(max_length=15)
     caught_level = models.IntegerField()
     actual_level = models.IntegerField()
-    motion = models.ManyToManyField(Motion, symmetrical=False)
-
+    taught_motion = models.ManyToManyField(TaughtMotion, symmetrical=False)
+    natural_motion = models.ManyToManyField(NaturalMotion, symmetrical=False)
     def __str__(self) -> str:
         return self.nickname
 
