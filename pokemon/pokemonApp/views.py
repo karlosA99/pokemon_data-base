@@ -1,6 +1,3 @@
-from re import S
-from unittest import result
-from django.db import reset_queries
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
 from django.template import loader
@@ -199,7 +196,6 @@ class Query1(ListView):
                 porcentage = (count_trainers * 100) / count_citizen
 
         return render(request, self.template_name, {'object_list' : trainers,'porcentage' : porcentage})
-        #todo WAITING FOR TESTING
 
 class Query2(ListView):
     model = CaughtPokemon
@@ -217,9 +213,20 @@ class Query2(ListView):
         return render(request,self.template_name,{'object_list' : caught_pokemons})
         #todo WAITING FOR TESTING
 
-# class Query3(ListView):
-#     template_name = ''  #!rellenar
+class Query3(ListView):
+    model = CaughtPokemon
+    template_name = ''  #!rellenar
 
-#     def get(self,request : HttpRequest)-> HttpResponse:
+    def get(self,request : HttpRequest)-> HttpResponse:
+        caught_pokemons = CaughtPokemon.objects.all()
+
+        if 'qtrainer' in request.GET and request.GET['qtrainer'] != '':
+            caught_pokemons = caught_pokemons.filter(id_Trainer__name=request.GET['qtrainer'])
+
+        if 'qspecies' in request.GET and request.GET['qspecies'] !='':
+            caught_pokemons = caught_pokemons.filter(species_name=request.GET['qspecies']).order_by('actual_level')
+
+
+        return render(request,self.template_name, {'caught_pokemons' : caught_pokemons})
 
 
