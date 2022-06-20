@@ -31,10 +31,7 @@
         <tr>
             <td>Nickname</td>
 
-            <td>Actual level</td>
-
-            <td>Trainer</td>
-
+            <td>Species</td>
         </tr>
 
     </thead>
@@ -47,12 +44,9 @@
                 {{object.nickname}}
             </td>
 
-            <td>
-                {{object.actual_level}}
-            </td>
 
             <td>
-                {{object.id_Trainer}}
+                {{object.species_name}}
             </td>
 
         </tr>
@@ -73,15 +67,13 @@
     </tbody>
 </table>
 
-<form action="/pokelevels/" method="get" id="q1">
+<form action="/league/" method="get" id="q1">
     <div id="pager" class="poke dialog-panel" class="row" class="col-12 filters" id="center-page poke">
 
         <div class="querys">
             <ul>
                 <li>
-                    
-                    <input style="width:30% ;" type="text" class="form-control" size="4" maxlength="15"
-                        placeholder="Insert species name" name="qspecies">
+
                     <button type="submit" class="btn btn-primary poke">Show results</button>
 
                 </li>

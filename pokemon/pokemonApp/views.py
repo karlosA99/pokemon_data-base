@@ -218,18 +218,15 @@ class Query2(ListView):
 
 class Query3(ListView):
     model = CaughtPokemon
-    template_name = ''  #!rellenar
+    template_name = 'relevant/pokelevels.html'  #!rellenar
 
     def get(self,request : HttpRequest)-> HttpResponse:
         caught_pokemons = CaughtPokemon.objects.all()
 
-        if 'qtrainer' in request.GET and request.GET['qtrainer'] != '':
-            caught_pokemons = caught_pokemons.filter(id_Trainer__name=request.GET['qtrainer'])
-
         if 'qspecies' in request.GET and request.GET['qspecies'] !='':
-            caught_pokemons = caught_pokemons.filter(species_name=request.GET['qspecies']).order_by('actual_level')
+            caught_pokemons = caught_pokemons.filter(species_name__name=request.GET['qspecies']).order_by('actual_level')
 
 
-        return render(request,self.template_name, {'caught_pokemons' : caught_pokemons})
+        return render(request,self.template_name, {'object_list' : caught_pokemons})
 
 
