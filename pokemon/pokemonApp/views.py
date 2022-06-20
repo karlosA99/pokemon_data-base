@@ -265,7 +265,7 @@ class Query5(ListView):
 
         result = []
         for region in regions:
-            r1 = duels.filter(region__name = 'region'))
+            r1 = duels.filter(region__name = 'region')
             d1 = r1.values('winner_id__name').annotate(Count('winner_id__name')).order_by('-winner_id__name__count')[:3]
             result.append(d1)
 
