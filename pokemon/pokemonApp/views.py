@@ -1,5 +1,3 @@
-from re import S
-from django.db import reset_queries
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
 from django.template import loader
@@ -179,3 +177,58 @@ class AboutList(ListView):
 
     model = About
     template_name = 'about/about.html'
+
+
+class Query1(ListView):
+    model = Trainer
+    template_name = '' #!rellenar
+
+
+    def get(self, request : HttpRequest)-> HttpResponse:
+        porcentage = 0
+        citizens = Citizen.objects.all()
+        trainers = Trainer.objects.all()
+
+        if 'region' in request.GET and request.GET['region'] != '':
+            citizens_count = citizens.filter(born_region__name=request.GET["region"]).count()
+            trainers = trainers.filter(born_region__name=request.GET["region"])
+            count_citizen = citizens.count()
+            count_trainers = trainers.count()
+            if count_citizen > 0:
+                porcentage = (count_trainers * 100) / count_citizen
+
+        return render(request, self.template_name, {'object_list' : trainers,'porcentage' : porcentage})
+
+class Query2(ListView):
+    model = CaughtPokemon
+    template_name = ''  #!rellenar
+
+    def get(self,request : HttpRequest)-> HttpResponse:
+        caught_pokemons = CaughtPokemon.objects.all()
+
+        if 'trainer' in request.GET and request.GET['trainer'] != '':
+            caught_pokemons = caught_pokemons.filter(id_Trainer__name=request.GET['trainer'])
+
+        if 'element' in request.GEt and request.GET['trainer'] != '':
+            caught_pokemons = caught_pokemons.filter(species_name__strong_element__name= request.GET['element'])
+
+        return render(request,self.template_name,{'object_list' : caught_pokemons})
+        #todo WAITING FOR TESTING
+
+class Query3(ListView):
+    model = CaughtPokemon
+    template_name = ''  #!rellenar
+
+    def get(self,request : HttpRequest)-> HttpResponse:
+        caught_pokemons = CaughtPokemon.objects.all()
+
+        if 'qtrainer' in request.GET and request.GET['qtrainer'] != '':
+            caught_pokemons = caught_pokemons.filter(id_Trainer__name=request.GET['qtrainer'])
+
+        if 'qspecies' in request.GET and request.GET['qspecies'] !='':
+            caught_pokemons = caught_pokemons.filter(species_name=request.GET['qspecies']).order_by('actual_level')
+
+
+        return render(request,self.template_name, {'caught_pokemons' : caught_pokemons})
+
+
