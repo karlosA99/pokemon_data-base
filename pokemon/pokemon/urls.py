@@ -32,5 +32,7 @@ urlpatterns = [
     path('species/', vi.SpeciesList.as_view(), name='species'),
     path('duel/', vi.DuelList.as_view(), name='duel'),
     path('about/', vi.AboutList.as_view(), name='about'),
+    path('relevant/', vi.RelevantList.as_view(), name='relevant'),
+    path('porcentage/', vi.CitizenList.as_view(), name='porcentage'),
 
 ]

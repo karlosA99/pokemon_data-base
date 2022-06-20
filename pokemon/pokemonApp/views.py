@@ -177,3 +177,7 @@ class DuelList(ListView):
 class AboutList(ListView):
     model = About
     template_name = 'about/about.html'
+
+class RelevantList(ListView):
+    model = Relevant
+    template_name = 'relevant/relevant.html'

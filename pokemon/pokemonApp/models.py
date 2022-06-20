@@ -119,3 +119,8 @@ class Duel(models.Model):
 class About(models.Model):
     pass
 
+
+class Relevant(models.Model):
+    pass
+
+

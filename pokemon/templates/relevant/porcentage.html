@@ -1,0 +1,32 @@
+ <table class="col-8 bg-light poke marg">
+        <thead>
+          <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Age</td>
+            <td>Gender</td>
+            <td>Born Region</td>
+          </tr>
+
+        </thead>
+        <tbody>
+          {% if object_list %}
+          {% for object in object_list %}
+          <tr>
+            <td>{{ object.id_Citizen }}</td>
+            <td>{{ object.name }}</td>
+            <td>{{ object.age }}</td>
+            <td>{{ object.sex }}</td>
+            <td>{{ object.born_region}}</td>
+          </tr>
+          {% endfor %}
+          {% else %}
+          <div class="alert alert-dismissible alert-danger">
+            <button type="button" style="float: right;" class="btn-close" onclick="exit()"
+              data-bs-dismiss="alert"></button>
+            <strong>Oh snap!</strong> We don't have any information about it. If you are admin, try insert some info <a
+              href="../admin/">here</a>.
+          </div>
+          {% endif %}
+        </tbody>
+      </table>
