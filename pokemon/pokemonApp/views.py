@@ -4,6 +4,7 @@ from django.template import loader
 from django.views.generic import ListView
 from sympy import re
 from pokemonApp.models import *
+from pokemonApp.tools import check_int_integrity
 
 
 def index(request):
@@ -18,7 +19,7 @@ class CitizenList(ListView):
 
         if "name" in request.GET and request.GET["name"] != '':
             citizen = citizen.filter(name=request.GET(["name"]))
-        if "age" in request.GET and request.GET["age"] != '':
+        if "age" in request.GET and request.GET["age"] != '' and check_int_integrity(request.GET["age"], 'int'):
             citizen = citizen.filter(age= int(request.GET["age"]))
         if "gender" in request.GET and request.GET["gender"] != '':
             citizen = citizen.filter(sex= request.GET["gender"])
@@ -45,9 +46,9 @@ class PokemonList(ListView):
     def get(self, request : HttpRequest)-> HttpResponse:
         pokemons = Pokemon.objects.all()
         is_shiny = None
-        if 'height' in request.GET and request.GET['height'] != '':
+        if 'height' in request.GET and request.GET['height'] != '' and check_int_integrity(request.GET["height"], 'decimal'):
             pokemons = pokemons.filter(height= request.GET['height'])
-        if 'weight' in request.GET and request.GET['weight'] != '':
+        if 'weight' in request.GET and request.GET['weight'] != '' and check_int_integrity(request.GET["weight"], 'decimal'):
             pokemons = pokemons.filter(weight= request.GET['weight'])
         if 'nature' in request.GET and request.GET['nature'] != '':
             pokemons = pokemons.filter(nature= request.GET['nature'])
@@ -75,9 +76,9 @@ class CaughtPokemonList(ListView):
             caughtPokemons = caughtPokemons.filter(id_Trainer__name=request.GET['trainer'])
         if 'pokeball' in request.GET and request.GET['pokeball'] != '':
             caughtPokemons = caughtPokemons.filter(pokeball=request.GET['pokeball'])
-        if 'caught_level' in request.GET and request.GET['caught_level'] != '':
+        if 'caught_level' in request.GET and request.GET['caught_level'] != '' and check_int_integrity(request.GET["caught_level"], 'int'):
             caughtPokemons = caughtPokemons.filter(caught_level=int(request.GET['caught_level']))
-        if 'actual_level' in request.GET and request.GET['actual_level']:
+        if 'actual_level' in request.GET and request.GET['actual_level'] and check_int_integrity(request.GET["actual_level"], 'int'):
             caughtPokemons = caughtPokemons.filter(actual_level=int(request.GET['actual_level']))
 
         return render(request,self.template_name, {'object_list': caughtPokemons})
@@ -174,6 +175,7 @@ class DuelList(ListView):
         return render(request,self.template_name, {'object_list' : duel})
 
 class AboutList(ListView):
+
     model = About
     template_name = 'about/about.html'
 
