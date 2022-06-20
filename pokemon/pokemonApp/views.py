@@ -245,14 +245,19 @@ class Query4(ListView):
         for _ in regions:
             trainer_regional_league.append([])
 
+
         dict_regions_index = {}
         for x in range(len(regions)):
             dict_regions_index[regions[x]] = x
 
-        for trainer in trainers:
-            if trainer.medals.count() == 8:
-                trainer_regional_league[dict_regions_index[trainer.born_region]].append(trainer)
+        for region in regions:
+            t1 = trainers.filter(born_region = region)
+            temp = t1.values('medals__id_City')
+            temp2 = temp.values('id_Community__id_Region__name')
 
+            if temp2.count() == 8:
+                #trainer_regional_league[dict_regions_index[trainer.born_region]].append(trainer)
+                pass
         return render(request,self.template_name,{'object_list': regions,'trainer_regional_league': trainer_regional_league})
 
 class Query5(ListView):
@@ -264,14 +269,25 @@ class Query5(ListView):
         duels = Duel.objects.all()
 
         result = []
-        for region in regions:
-            r1 = duels.filter(region__name = 'region')
+        for _ in regions:
+            result.append([])
+
+        for region,i in regions:
+            r1 = duels.filter(region__name = region)
             d1 = r1.values('winner_id__name').annotate(Count('winner_id__name')).order_by('-winner_id__name__count')[:3]
-            result.append(d1)
+            for x in d1:
+                result[i].append(x['winner_id__name'])
 
         return render(request,self.template_name, {'object_list':regions, 'winners' : result})
 
 
+# class Query6(ListView):
+#     model = CaughtPokemon
+#     template_name = '' #! rellenar
+
+#     def get(self,request : HttpRequest)-> HttpResponse:
+
+#         caught_pokemons = CaughtPokemon.objects.all()
 
 
 
