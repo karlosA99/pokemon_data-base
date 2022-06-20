@@ -31,7 +31,7 @@
       <div>
         <img
           src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.jL4cCeS23Oc4jFYrK-bjiwHaHa%26pid%3DApi&f=1 "
-          width="25" height="25">
+          width="25px" height="25px">
       </div>
 
       <div class="collapse navbar-collapse marg" id="navbarColor01">
@@ -42,22 +42,8 @@
             </a>
           </li>
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown" href="#" role="button"
-              aria-haspopup="true" aria-expanded="false">Relevant</a>
-            <!-- <div class="Table"> -->
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{% url 'citizen' %}">Citizens</a>
-              <a class="dropdown-item" href="{% url 'trainer' %}">Trainers</a>
-              <a class="dropdown-item" href="{% url 'pokemon' %}">Pokemons</a>
-              <a class="dropdown-item" href="{% url 'caught_pokemon' %}">Caught Pokemons</a>
-              <a class="dropdown-item" href="{% url 'gym' %}">Gyms</a>
-              <a class="dropdown-item" href="{% url 'motion' %}">Motions</a>
-              <a class="dropdown-item" href="{% url 'region' %}">Regions</a>
-              <a class="dropdown-item" href="{% url 'species' %}">Species</a>
-              <a class="dropdown-item" href="{% url 'element' %}">Elements</a>
-              <a class="dropdown-item" href="{% url 'duel' %}">Duels</a>
-            </div>
+          <li class="nav-item">
+            <a class="nav-link" href="../relevant">Relevant</a>
           </li>
 
           <li class="nav-item dropdown">
@@ -75,28 +61,20 @@
               <a class="dropdown-item" href="{% url 'species' %}">Species</a>
               <a class="dropdown-item" href="{% url 'element' %}">Elements</a>
               <a class="dropdown-item" href="{% url 'duel' %}">Duels</a>
+              
             </div>
           </li>
-          <!-- <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-              aria-expanded="false">Tables</a>
-            <div class="Table"> 
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="../citizen/">citizen</a></li>
-                <a class="dropdown-item" href="../trainer/">trainer</a>
-                <a class="dropdown-item" href="../home/">pokemon</a>
-              </div>
-          </li> -->
           <li class="nav-item">
             <a class="nav-link" href="../about">About</a>
           </li>
-          <li style="position: absolute; top: 30px; right: 10px;">
+          <li style="position: absolute; top: 10px; right: 10px;">
             <div class="btn-group-vertical">
               <div class="btn btn-secondary" style="background-color:rgb(251, 251, 251)">
                 <a class="poke" style="color: black;" href="../admin/">Admin Site</a>
               </div>
             </div>
           </li>
+
         </ul>
       </div>
     </div>

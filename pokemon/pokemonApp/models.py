@@ -100,7 +100,7 @@ class CaughtPokemon(Pokemon):
     pokeball = models.CharField(max_length= 15)
     caught_level = models.IntegerField()
     actual_level = models.IntegerField()
-    motion = models.ManyToManyField(Motion)
+    motion = models.ManyToManyField(Motion, symmetrical=False)
 
     def __str__(self) -> str:
         return self.nickname
@@ -118,4 +118,9 @@ class Duel(models.Model):
 
 class About(models.Model):
     pass
+
+
+class Relevant(models.Model):
+    pass
+
 

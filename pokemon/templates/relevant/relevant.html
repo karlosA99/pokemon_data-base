@@ -26,7 +26,7 @@
 </head>
 
 
-<body onload="playtheme()">
+<body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid poke">
@@ -68,7 +68,7 @@
                             <a class="dropdown-item" href="{% url 'species' %}">Species</a>
                             <a class="dropdown-item" href="{% url 'element' %}">Elements</a>
                             <a class="dropdown-item" href="{% url 'duel' %}">Duels</a>
-                       
+
                         </div>
                     </li>
                     <li class="nav-item">
@@ -87,41 +87,69 @@
         </div>
     </nav>
 
+    <div id="pager" class="poke dialog-panel" class="row" class="col-12 filters" id="center-page poke">
+        <div class="row">
+            <div class="column">
+                <h5 class="poke marg">Relevant information</h5>
+            </div>
+        </div>
+        <div class="querys">
+            <ul>
+                <li>
 
-    <div id="center-page poke">
-        <h3 class="poke header">About</h3>
-        <div id="pager" class="poke dialog-panel">
+                    <a href="../porcentage" target="_blank">Porciento de la población de una region que es entrenador
+                        Pokémon</a>.
 
-            <p>
-            <p>
+                </li>
 
-                This application aims to implement a database system that records all data related to the Pokemon World,
-                to facilitate the development of Professor Oak's research.
-
-                In addition, the information can be seen with regulations by the habitants of the Pokemon world.
-            </p>
-            <h6 class="poke">Use Mode</h6>
-
-            <p>The navigation bar at the top you will help you find the interactive options.</p>
-            <p><strong>Home:</strong> A page to make you feel poké-welcome!</p>
-            <p><strong>Tables:</strong>A dropdown will display by clicking. There you will find all the available
-                tables.
-                In theses tables you will find relevant information on the selected topic. In addition, you will be able
-                to filter the data at your convenience.</p>
+                <li>
 
 
-            <p><strong>About:</strong>This beautiful page is where you, little and dummy human, can learn how to use
-                this simple web. </p>
+                    <a href="../pokdetails" target="_blank">Especie y apodos de los pokémones de un elemento particular,
+                        capturados por un entrenador</a>.
 
-            <p>
-                <Happy Poke-Using!</p>
-            </p>
+                </li>
 
 
-            <img src="https://cdn2.iconfinder.com/data/icons/pixel-art-large/100/PixelArtIcons-20-256.png"
-                class="continue-symbol">
+                <li>
+
+                    <a href="../pokelevels" target="_blank">Pokémones de una especie dada capturados por un
+                        entrenador, ordenados por nivel actual. Mostrándose además el nivel y el entrenador que
+                        lo posee.</a>.
+
+                </li>
+                <li>
+
+                     <a href="../league" target="_blank">Entrenadores que pueden participar en las ligas regionales</a>.
+         
+                    
+                </li>
+                <li>
+
+                    <div>
+                        <label> Tres entrenadores con más victorias de cada región </label>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary poke">Show results</button>
+                    </div>
+
+                </li>
+                <li>
+
+                    <div>
+                        <label> Movimientos más populares que los entrenadores le enseñan a sus pokémones de
+                            entre los posibles movimientos que estos pueden aprender de forma no natural
+                        </label>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary poke">Show results</button>
+                    </div>
+
+                </li>
+            </ul>
         </div>
     </div>
+    </form> -->
 
     <style>
         @font-face {
@@ -133,30 +161,6 @@
         .poke {
             font-family: 'Pokemon Classic';
 
-        }
-
-        .marg-left {
-            margin-left: 20px;
-        }
-
-        .dropdown-item:hover {
-            background-color: #5a5a5a;
-        }
-
-        .filters li {
-            list-style-image: url("../../static/img/pokeball.ico");
-        }
-
-        li ul li {
-            list-style: none !important;
-        }
-
-        .alert-danger {
-            background-color: rgba(241, 0, 0, 0.707);
-        }
-
-        #banner {
-            width: 100%;
         }
 
         .dialog-panel {
@@ -200,7 +204,8 @@
         }
 
         body {
-            background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.TbWRrnatXBjHvUmDR2hDdAHaF7%26pid%3DApi&f=1);
+            background-image:
+                url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.TbWRrnatXBjHvUmDR2hDdAHaF7%26pid%3DApi&f=1);
             background-repeat: no-repeat;
             background-size: cover;
         }
@@ -224,26 +229,28 @@
             margin-top: 30px;
             margin-left: 5%;
         }
+
+        ::placeholder {
+            color: rgb(228, 227, 227) !important;
+        }
+
+        li {
+            margin-top: 15px;
+        }
+
+        .dropdown-item:hover {
+            background-color: #5a5a5a;
+        }
+
+        .querys li {
+            list-style-image: url("../../static/img/pokeball.ico");
+        }
+
+        li ul li {
+            list-style: none !important;
+        }
     </style>
 
-
 </body>
-
-<script>
-
-    function playtheme() {
-        var sound = new Howl({
-            src: ['../../static/aud/maintheme.wav'],
-            volume: 1.0,
-            onend: function () {
-                sound.play()
-
-            }
-        });
-        sound.play()
-
-    }
-
-</script>
 
 </html>
