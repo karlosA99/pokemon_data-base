@@ -68,7 +68,7 @@
                             <a class="dropdown-item" href="{% url 'species' %}">Species</a>
                             <a class="dropdown-item" href="{% url 'element' %}">Elements</a>
                             <a class="dropdown-item" href="{% url 'duel' %}">Duels</a>
-                          
+
                         </div>
                     </li>
                     <li class="nav-item">
@@ -87,28 +87,22 @@
         </div>
     </nav>
 
-    <div id="pager" class="poke dialog-panel" class="row" class="col-12 filters" id="center-page poke">
-        <div class="row">
-            <div class="column">
-                <h5 class="poke marg">Relevant information</h5>
+        <div id="pager" class="poke dialog-panel" class="row" class="col-12 filters" id="center-page poke">
+            <div class="row">
+                <div class="column">
+                    <h5 class="poke marg">Relevant information</h5>
+                </div>
             </div>
-        </div>
-        <div class="querys">
-            <ul>
-                <li>
-                    <!-- cambiar links de action -->
-                    <form action="/porcentage/" method="get" id="q1">
-                        <label>Porciento de la población de una region que es entrenador Pokémon</label>
+            <div class="querys">
+                <ul>
+                    <li>
+                        
+                        <a href ="../porcentage" target="_blank">Porciento de la población de una region que es entrenador Pokémon</a>.
 
-                        <input style="width:30% ;" type="text" class="form-control" size="4" maxlength="5"
-                            placeholder="Insert region name" name="qregion">
+                    </li>
 
-                        <button type="submit" class="btn btn-primary poke">Show results</button>
-                    </form>
-                </li>
+                    <li>
 
-                <li>
-                    <form action="/pokemon/" method="get" id="q2">
                         <label style>Especie y apodos de los pokémones de un elemento particular, capturados por un
                             entrenador</label>
 
@@ -117,11 +111,11 @@
                         <input style="width:30% ;" type="text" class="form-control" size="4" maxlength="5"
                             placeholder="Insert trainer name" name="qtrainer">
                         <button type="submit" class="btn btn-primary poke">Show results</button>
-                    </form>
-                </li>
 
-                <li>
-                    <form action="/pokemon/" method="get" id="q3">
+                    </li>
+
+                    <li>
+
                         <label>Pokémones de una especie dada capturados por un
                             entrenador, ordenados por nivel actual. Mostrándose además el nivel y el entrenador que
                             lo posee.
@@ -132,10 +126,10 @@
                         <input style="width:30% ;" type="text" class="form-control" size="4" maxlength="5"
                             placeholder="Insert trainer name" name="qtrainer">
                         <button type="submit" class="btn btn-primary poke">Show results</button>
-                    </form>
-                </li>
-                <li>
-                    <form action="/pokemon/" method="get" id="q4">
+
+                    </li>
+                    <li>
+
                         <div>
 
                             <label>Entrenadores que pueden participar en las ligas regionales</label>
@@ -144,19 +138,19 @@
                         <div>
                             <button type="submit" class="btn btn-primary poke">Show results</button>
                         </div>
-                </li>
-                <li>
-                    <form action="/pokemon/" method="get" id="q5">
+                    </li>
+                    <li>
+
                         <div>
                             <label> Tres entrenadores con más victorias de cada región </label>
                         </div>
                         <div>
                             <button type="submit" class="btn btn-primary poke">Show results</button>
                         </div>
-                    </form>
-                </li>
-                <li>
-                    <form action="/pokemon/" method="get" id="q5">
+
+                    </li>
+                    <li>
+
                         <div>
                             <label> Movimientos más populares que los entrenadores le enseñan a sus pokémones de
                                 entre los posibles movimientos que estos pueden aprender de forma no natural
@@ -165,110 +159,112 @@
                         <div>
                             <button type="submit" class="btn btn-primary poke">Show results</button>
                         </div>
-                    </form>
-                </li>
-            </ul>
+
+                    </li>
+                </ul>
+            </div>
         </div>
+    </form> -->
 
-        <style>
-            @font-face {
-                font-family: 'Pokemon Classic';
-                src: local('Pokemon Classic'),
-                    local('Pokemon-Classic');
+    <style>
+        @font-face {
+            font-family: 'Pokemon Classic';
+            src: local('Pokemon Classic'),
+                local('Pokemon-Classic');
+        }
+
+        .poke {
+            font-family: 'Pokemon Classic';
+
+        }
+
+        .dialog-panel {
+            border-style: double;
+            border-width: 7px;
+            border-radius: 5px;
+            margin: 30px;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-content: flex-start;
+            flex-direction: column;
+        }
+
+        .continue-symbol {
+            width: 50px;
+            height: 50px;
+            position: relative;
+            transform: rotate(180deg);
+            align-self: flex-end;
+            animation: continue 1.5s linear infinite;
+        }
+
+        @keyframes continue {
+            0% {
+                right: 0;
+                top: 0px;
             }
 
-            .poke {
-                font-family: 'Pokemon Classic';
-
+            50% {
+                right: 0;
+                top: 15px;
             }
 
-            .dialog-panel {
-                border-style: double;
-                border-width: 7px;
-                border-radius: 5px;
-                margin: 30px;
-                padding: 20px;
-                text-align: center;
-                display: flex;
-                flex-wrap: nowrap;
-                justify-content: space-between;
-                align-content: flex-start;
-                flex-direction: column;
+            100% {
+                right: 0;
+                top: 0px;
             }
+        }
 
-            .continue-symbol {
-                width: 50px;
-                height: 50px;
-                position: relative;
-                transform: rotate(180deg);
-                align-self: flex-end;
-                animation: continue 1.5s linear infinite;
-            }
+        body {
+            background-image:
+                url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.TbWRrnatXBjHvUmDR2hDdAHaF7%26pid%3DApi&f=1);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
 
-            @keyframes continue {
-                0% {
-                    right: 0;
-                    top: 0px;
-                }
+        #center-page {
+            align-items: center;
+        }
 
-                50% {
-                    right: 0;
-                    top: 15px;
-                }
+        #pager {
+            border-radius: 5px double;
+            margin: 20px 5% 20px 5%;
+            background-color: wheat;
+            width: 90%;
+        }
 
-                100% {
-                    right: 0;
-                    top: 0px;
-                }
-            }
+        .dialog-panel {
+            text-align: justify;
+        }
 
-            body {
-                background-image:
-                    url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.TbWRrnatXBjHvUmDR2hDdAHaF7%26pid%3DApi&f=1);
-                background-repeat: no-repeat;
-                background-size: cover;
-            }
+        .header {
+            margin-top: 30px;
+            margin-left: 5%;
+        }
 
-            #center-page {
-                align-items: center;
-            }
+        ::placeholder {
+            color: rgb(228, 227, 227) !important;
+        }
 
-            #pager {
-                border-radius: 5px double;
-                margin: 20px 5% 20px 5%;
-                background-color: wheat;
-                width: 90%;
-            }
+        li {
+            margin-top: 15px;
+        }
 
-            .dialog-panel {
-                text-align: justify;
-            }
+        .dropdown-item:hover {
+            background-color: #5a5a5a;
+        }
 
-            .header {
-                margin-top: 30px;
-                margin-left: 5%;
-            }
+        .querys li {
+            list-style-image: url("../../static/img/pokeball.ico");
+        }
 
-            ::placeholder {
-                color: rgb(228, 227, 227) !important;
-            }
-
-            li {
-                margin-top: 15px;
-            }
-
-            .dropdown-item:hover {
-                background-color: #5a5a5a;
-            }
-
-            .querys li {
-                list-style-image: url("../../static/img/pokeball.ico");
-            }
-
-            li ul li {
-                list-style: none !important;
-            }
-        </style>
+        li ul li {
+            list-style: none !important;
+        }
+    </style>
 
 </body>
 

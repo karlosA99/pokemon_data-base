@@ -194,9 +194,9 @@ class Query1(ListView):
         trainers = Trainer.objects.all()
         result = 0
 
-        if 'region' in request.GET and request.GET['region'] != '':
-            citizens = citizens.filter(born_region__name=request.GET["region"])
-            trainers = trainers.filter(born_region__name=request.GET["region"])
+        if 'qregion' in request.GET and request.GET['qregion'] != '':
+            citizens = citizens.filter(born_region__name=request.GET["qregion"])
+            trainers = trainers.filter(born_region__name=request.GET["qregion"])
             count_citizen = citizens.count()
             count_trainers = trainers.count()
             if count_citizen > 0:
@@ -205,7 +205,7 @@ class Query1(ListView):
         for t in trainers:
             porcentage.append(result)
 
-        return render(self, self.template_name, {'object_list' : trainers,'porcentage' : porcentage})
+        return render(request, self.template_name, {'object_list' : trainers,'porcentage' : porcentage})
         #todo WAITING FOR TESTING
 
 class Query2(ListView):
