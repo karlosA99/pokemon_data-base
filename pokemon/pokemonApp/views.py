@@ -207,11 +207,11 @@ class Query2(ListView):
     def get(self,request : HttpRequest)-> HttpResponse:
         caught_pokemons = CaughtPokemon.objects.all()
 
-        if 'trainer' in request.GET and request.GET['trainer'] != '':
-            caught_pokemons = caught_pokemons.filter(id_Trainer__name=request.GET['trainer'])
+        if 'qtrainer' in request.GET and request.GET['qtrainer'] != '':
+            caught_pokemons = caught_pokemons.filter(id_Trainer__name=request.GET['qtrainer'])
 
-        if 'element' in request.GEt and request.GET['trainer'] != '':
-            caught_pokemons = caught_pokemons.filter(species_name__strong_element__name= request.GET['element'])
+        if 'qelement' in request.GEt and request.GET['qelement'] != '':
+            caught_pokemons = caught_pokemons.filter(species_name__strong_element__name= request.GET['qelement'])
 
         return render(request,self.template_name,{'object_list' : caught_pokemons})
         #todo WAITING FOR TESTING
@@ -231,7 +231,7 @@ class Query3(ListView):
         return render(request,self.template_name, {'object_list' : caught_pokemons})
 
 
-class Query(ListView):
+class Query4(ListView):
     template_name = '' #!rellenar
 
     def get(self,request : HttpRequest)-> HttpResponse:
