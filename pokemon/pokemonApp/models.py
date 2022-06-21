@@ -119,16 +119,6 @@ class Species(models.Model):
         Element, on_delete=models.CASCADE, related_name="%(class)s_secundary_element")
     name = models.CharField(max_length=30)
     legendary = models.BooleanField()
-<<<<<<< HEAD
-    # natural_motion = models.ManyToManyField(
-    #     NaturalMotion, related_name="%(class)s_natural_motion")
-    # taught_motion = models.ManyToManyField(
-    #     TaughtMotion, related_name="%(class)s_taught_motion")
-    # region = models.ManyToManyField(Region)
-    motion = models.ManyToManyField(
-        Motion, related_name="%(class)s_motion")
-
-=======
     natural_motion = models.ManyToManyField(
         NaturalMotion, related_name="%(class)s_natural_motion")
     taught_motion = models.ManyToManyField(
@@ -136,7 +126,6 @@ class Species(models.Model):
     region = models.ManyToManyField(Region)
     motion = models.ManyToManyField(
         Motion, related_name="%(class)s_motion")
->>>>>>> 0633ec6acbfed22a8df1e2a63b68be4aa000e68f
     def __str__(self) -> str:
         return self.name
 
@@ -160,15 +149,8 @@ class CaughtPokemon(Pokemon):
     pokeball = models.CharField(max_length=15)
     caught_level = models.IntegerField()
     actual_level = models.IntegerField()
-<<<<<<< HEAD
-    natural_motion = models.ManyToManyField(NaturalMotion, symmetrical=False)
-    taught_motion = models.ManyToManyField(TaughtMotion, symmetrical=False)
-    # natural_motion = models.ManyToManyField(NaturalMotion, symmetrical=False)
-
-=======
     taught_motion = models.ManyToManyField(TaughtMotion, symmetrical=False)
     natural_motion = models.ManyToManyField(NaturalMotion, symmetrical=False)
->>>>>>> 0633ec6acbfed22a8df1e2a63b68be4aa000e68f
     def __str__(self) -> str:
         return self.nickname
 

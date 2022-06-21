@@ -251,15 +251,6 @@ class Query4(ListView):
             dict_regions_index[regions[x]] = x
 
         for region in regions:
-<<<<<<< HEAD
-            t1 = trainers.filter(born_region = region)
-            temp = t1.values('medals__id_City')
-            for trainer in temp:
-                temp2 = temp.values('id_Community__id_Region__name')
-
-                if temp2.count() == 8:
-                    trainer_regional_league[dict_regions_index[region]].append(trainer)
-=======
             t1 = trainers.filter(born_region__name = region).va
             for trainer in t1:
                 temp = t1.values('medals__id_City','name')
@@ -268,7 +259,6 @@ class Query4(ListView):
                 if temp2.count() == 8:
                     trainer_regional_league[dict_regions_index[region]].append(trainer)
 
->>>>>>> 0633ec6acbfed22a8df1e2a63b68be4aa000e68f
 
         return render(request,self.template_name,{'object_list': regions,'trainer_regional_league': trainer_regional_league})
 
