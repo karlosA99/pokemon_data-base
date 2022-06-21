@@ -102,6 +102,8 @@ class TaughtMotion(models.Model):
     def __str__(self) -> str:
         return str(self.name)
 
+# ?Trainer
+
 
 class Trainer(Citizen):
     id_Gym = models.ForeignKey(
