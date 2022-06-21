@@ -38,6 +38,6 @@ urlpatterns = [
     path('pokelevels/', vi.Query3.as_view(), name='pokelevels'),
     path('league/', vi.Query4.as_view(), name='league'),
     path('winners/', vi.Query5.as_view(), name='winners'),
-    path('topmotions/', vi.Query5.as_view(), name='topmotions'),
+    path('topmotions/', vi.Query6.as_view(), name='topmotions'),
 
 ]

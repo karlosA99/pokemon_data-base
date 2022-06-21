@@ -285,11 +285,11 @@ class Query5(ListView):
 
 class Query6(ListView):
     model = CaughtPokemon
-    template_name = '' #! rellenar
+    template_name = 'relevant/topmotions.html' #! rellenar
 
     def get(self,request : HttpRequest)-> HttpResponse:
 
-        caught_pokemons = CaughtPokemon.objects.values('taught_motion').annotate(Count('taught_motion')).order_by('-motion_count')[:3]
+        caught_pokemons = CaughtPokemon.objects.values('taught_motion').annotate(Count('taught_motion')).order_by('-taught_motion__count')[:3]
 
         return render(request,self.template_name, {'object_list' : caught_pokemons})
 
