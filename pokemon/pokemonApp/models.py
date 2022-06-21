@@ -44,6 +44,7 @@ class City(models.Model):
     def __str__(self) -> str:
         return str(self.id_City)
 
+
 class Village(models.Model):
     id_village = models.OneToOneField(
         Community, primary_key=True, on_delete=models.CASCADE)
@@ -124,8 +125,7 @@ class Species(models.Model):
     taught_motion = models.ManyToManyField(
         TaughtMotion, related_name="%(class)s_taught_motion")
     region = models.ManyToManyField(Region)
-    motion = models.ManyToManyField(
-        Motion, related_name="%(class)s_motion")
+
     def __str__(self) -> str:
         return self.name
 
@@ -151,6 +151,7 @@ class CaughtPokemon(Pokemon):
     actual_level = models.IntegerField()
     taught_motion = models.ManyToManyField(TaughtMotion, symmetrical=False)
     natural_motion = models.ManyToManyField(NaturalMotion, symmetrical=False)
+
     def __str__(self) -> str:
         return self.nickname
 
