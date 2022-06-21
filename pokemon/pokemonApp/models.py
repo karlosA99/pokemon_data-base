@@ -111,6 +111,8 @@ class Trainer(Citizen):
     medals = models.ManyToManyField(
         Gym, blank=True, related_name="%(class)s_medals")
 
+# Species
+
 
 class Species(models.Model):
     id_species = models.AutoField(primary_key=True)
