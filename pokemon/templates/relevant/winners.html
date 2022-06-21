@@ -30,14 +30,14 @@
     <thead>
         <tr>
             <td>Region</td>
-
-            <td>Trainers</td>
+            <td>Top Trainers</td>
         </tr>
 
     </thead>
     <tbody>
         {% if object_list %}
-        {% for object in object_list %}
+        {% for object in object_list.values %}
+        
         <tr>
 
             <td>
@@ -45,10 +45,12 @@
             </td>
 
             <td>
-                {{trainer_regional_league}}
+                {{winners}}
             </td>
 
         </tr>
+
+
         {% endfor %}
 
 

@@ -29,9 +29,8 @@
 <table class="col-12 bg-light poke marg">
     <thead>
         <tr>
-            <td>Region</td>
+            <td>Motions</td>
 
-            <td>Trainers</td>
         </tr>
 
     </thead>
@@ -40,18 +39,12 @@
         {% for object in object_list %}
         <tr>
 
-            <td>
-                {{object.name}}
-            </td>
+      <td>{% for move in object.taught_motion.all %}
+              {{move.name}}, {% endfor %}</td>
 
-            <td>
-                {{trainer_regional_league}}
-            </td>
 
         </tr>
         {% endfor %}
-
-
 
 
         {% else %}

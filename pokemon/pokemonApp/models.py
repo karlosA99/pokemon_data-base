@@ -112,9 +112,7 @@ class Trainer(Citizen):
         'self', through='Duel', through_fields=['trainer1', 'trainer1'])
     medals = models.ManyToManyField(
         Gym, blank=True, related_name="%(class)s_medals")
-
-# Species
-
+ 
 
 class Species(models.Model):
     id_species = models.AutoField(primary_key=True)
@@ -180,3 +178,6 @@ class About(models.Model):
 
 class Relevant(models.Model):
     pass
+
+
+

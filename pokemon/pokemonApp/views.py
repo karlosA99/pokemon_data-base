@@ -263,7 +263,7 @@ class Query4(ListView):
 
 class Query5(ListView):
     model = Duel
-    template_name = ''#! rellenar
+    template_name = 'relevant/winners.html'#! rellenar
 
     def get(self,request : HttpRequest)-> HttpResponse:
         regions = Region.objects.all()
@@ -273,22 +273,23 @@ class Query5(ListView):
         for _ in regions:
             result.append([])
 
-        for region,i in regions:
+        for i, region in enumerate(regions):
             r1 = duels.filter(region__name = region)
             d1 = r1.values('winner_id__name').annotate(Count('winner_id__name')).order_by('-winner_id__name__count')[:3]
-            for x in d1:
-                result[i].append(x['winner_id__name'])
+
+            for q in d1:
+                result[i].append(q['winner_id__name'])
 
         return render(request,self.template_name, {'object_list':regions, 'winners' : result})
 
 
 class Query6(ListView):
     model = CaughtPokemon
-    template_name = '' #! rellenar
+    template_name = 'relevant/topmotions.html' #! rellenar
 
     def get(self,request : HttpRequest)-> HttpResponse:
 
-        caught_pokemons = CaughtPokemon.objects.values('taught_motion').annotate(Count('taught_motion')).order_by('-motion_count')[:3]
+        caught_pokemons = CaughtPokemon.objects.values('taught_motion').annotate(Count('taught_motion')).order_by('-taught_motion__count')[:3]
 
         return render(request,self.template_name, {'object_list' : caught_pokemons})
 

@@ -101,7 +101,8 @@
             <td>Pokeball used</td>
             <td>Caught level</td>
             <td>Actual level</td>
-            <td>Motions</td>
+            <td>Taught motion</td>
+            <td>Natural motions</td>
           </tr>
 
         </thead>
@@ -114,8 +115,10 @@
             <td>{{ object.pokeball }}</td>
             <td>{{ object.caught_level }}</td>
             <td>{{ object.actual_level }}</td>
-            <td>{% for move in object.motion.all %}
+            <td>{% for move in object.taught_motion.all %}
               {{move.name}}, {% endfor %}</td>
+               <td>{% for moven in object.natural_motion.all %}
+              {{moven.name}}, {% endfor %}</td>
           </tr>
           {% endfor %}
           {% else %}
