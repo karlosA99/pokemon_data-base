@@ -284,16 +284,6 @@ class Query5(ListView):
 
 
 class Query6(ListView):
-<<<<<<< HEAD
-     model = CaughtPokemon
-     template_name = '' #! rellenar
-
-    # def get(self,request : HttpRequest)-> HttpResponse:
-    #      caught_pokemons = CaughtPokemon.objects.all()
-         
-    #      cp = caught_pokemons.values('motion').annotate(Count('motion')).order_by('-motion__count')[:3]
-
-=======
     model = CaughtPokemon
     template_name = '' #! rellenar
 
@@ -302,7 +292,6 @@ class Query6(ListView):
         caught_pokemons = CaughtPokemon.objects.values('taught_motion').annotate(Count('taught_motion')).order_by('-motion_count')[:3]
 
         return render(request,self.template_name, {'object_list' : caught_pokemons})
->>>>>>> 2feea06cfd2c0fe71e718eb777d4e6b7db7c9922
 
 
 
