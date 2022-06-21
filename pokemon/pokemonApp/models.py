@@ -92,7 +92,7 @@ class NaturalMotion(models.Model):
         Motion, primary_key=True, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
-        return name
+        return str(self.name)
 
 
 class TaughtMotion(models.Model):
@@ -100,7 +100,7 @@ class TaughtMotion(models.Model):
         Motion, primary_key=True, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
-        return name
+        return str(self.name)
 
 
 class Trainer(Citizen):
