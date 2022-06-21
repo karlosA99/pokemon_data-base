@@ -251,13 +251,12 @@ class Query4(ListView):
             dict_regions_index[regions[x]] = x
 
         for region in regions:
-            t1 = trainers.filter(born_region__name = region).va
-            for trainer in t1:
-                temp = t1.values('medals__id_City','name')
-                temp2 = temp.values('id_Community__id_Region__name').filter(id_Community__id_Region__name = region)
-
-                if temp2.count() == 8:
-                    trainer_regional_league[dict_regions_index[region]].append(trainer)
+            trainer_by_region = trainers.filter(born_region__name = region)
+            #trainer_by_region = trainer_by_region.filter(medals__id_City__id_Community__name = region) HAY Q PROBAR ESTO
+            medals_trainer_by_region = trainer_by_region.values('name').annotate(Count('medals')).order_by('medals__count')
+            for element in medals_trainer_by_region:
+                if element['medals__count'] == 8:
+                    trainer_regional_league[dict_regions_index[region]].append()
 
 
         return render(request,self.template_name,{'object_list': regions,'trainer_regional_league': trainer_regional_league})
@@ -285,6 +284,7 @@ class Query5(ListView):
 
 
 class Query6(ListView):
+<<<<<<< HEAD
      model = CaughtPokemon
      template_name = '' #! rellenar
 
@@ -293,6 +293,16 @@ class Query6(ListView):
          
     #      cp = caught_pokemons.values('motion').annotate(Count('motion')).order_by('-motion__count')[:3]
 
+=======
+    model = CaughtPokemon
+    template_name = '' #! rellenar
+
+    def get(self,request : HttpRequest)-> HttpResponse:
+
+        caught_pokemons = CaughtPokemon.objects.values('taught_motion').annotate(Count('taught_motion')).order_by('-motion_count')[:3]
+
+        return render(request,self.template_name, {'object_list' : caught_pokemons})
+>>>>>>> 2feea06cfd2c0fe71e718eb777d4e6b7db7c9922
 
 
 
