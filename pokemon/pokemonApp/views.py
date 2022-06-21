@@ -257,17 +257,21 @@ class Query4(ListView):
 
 class Query5(ListView):
     model = Duel
-    template_name = ''#! rellenar
+    template_name = 'relevant/winners.html'#! rellenar
 
     def get(self,request : HttpRequest)-> HttpResponse:
         regions = Region.objects.all()
         duels = Duel.objects.all()
 
         result = []
-        for region in regions:
-            r1 = duels.filter(region__name = 'region'))
+        for _ in regions:
+            result.append([])
+        for i, region in enumerate(regions):
+            r1 = duels.filter(region__name = region)
             d1 = r1.values('winner_id__name').annotate(Count('winner_id__name')).order_by('-winner_id__name__count')[:3]
-            result.append(d1)
+
+            for q in d1:
+                result[i].append(q['winner_id__name'])
 
         return render(request,self.template_name, {'object_list':regions, 'winners' : result})
 

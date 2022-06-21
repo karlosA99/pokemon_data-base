@@ -163,9 +163,6 @@ class About(models.Model):
 
 class Relevant(models.Model):
     pass
-<<<<<<< HEAD
 
 
 
-=======
->>>>>>> f23485d03afa76077b0cacf65b9cc6811955e3d8

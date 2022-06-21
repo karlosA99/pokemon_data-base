@@ -30,41 +30,27 @@
     <thead>
         <tr>
             <td>Region</td>
-
-            <td>Trainers</td>
+            <td>Top Trainers</td>
         </tr>
 
     </thead>
     <tbody>
         {% if object_list %}
-        {% for object in object_list %}
+        {% for object in object_list.values %}
         <tr>
 
             <td>
                 {{object.name}}
             </td>
 
-        </tr>
-        {% endfor %}
-
-        {% for wi in winners %}
-
-        <tr>
-
-
-
-            <td>{% for w in wi %}
-                {{w.name}}, {% endfor %}</td>
-
+            <td>
+                {{winners}}
+            </td>
 
         </tr>
 
-        {% endfor %}
-
 
         {% endfor %}
-
-
 
 
 
