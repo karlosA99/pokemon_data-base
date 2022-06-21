@@ -99,7 +99,7 @@ class Trainer(Citizen):
         'self', through='Duel', through_fields=['trainer1', 'trainer1'])
     medals = models.ManyToManyField(
         Gym, blank=True, related_name="%(class)s_medals")
-
+ 
 
 class Species(models.Model):
     id_species = models.AutoField(primary_key=True)
@@ -109,11 +109,13 @@ class Species(models.Model):
         Element, on_delete=models.CASCADE, related_name="%(class)s_secundary_element")
     name = models.CharField(max_length=30)
     legendary = models.BooleanField()
-    natural_motion = models.ManyToManyField(
-        NaturalMotion, related_name="%(class)s_natural_motion")
-    taught_motion = models.ManyToManyField(
-        TaughtMotion, related_name="%(class)s_taught_motion")
-    region = models.ManyToManyField(Region)
+    # natural_motion = models.ManyToManyField(
+    #     NaturalMotion, related_name="%(class)s_natural_motion")
+    # taught_motion = models.ManyToManyField(
+    #     TaughtMotion, related_name="%(class)s_taught_motion")
+    # region = models.ManyToManyField(Region)
+    motion = models.ManyToManyField(
+        Motion, related_name="%(class)s_motion")
 
     def __str__(self) -> str:
         return self.name
@@ -138,7 +140,9 @@ class CaughtPokemon(Pokemon):
     pokeball = models.CharField(max_length=15)
     caught_level = models.IntegerField()
     actual_level = models.IntegerField()
-    motion = models.ManyToManyField(Motion, symmetrical=False)
+    natural_motion = models.ManyToManyField(NaturalMotion, symmetrical=False)
+    taught_motion = models.ManyToManyField(TaughtMotion, symmetrical=False)
+    # natural_motion = models.ManyToManyField(NaturalMotion, symmetrical=False)
 
     def __str__(self) -> str:
         return self.nickname

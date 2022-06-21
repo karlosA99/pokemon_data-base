@@ -44,29 +44,12 @@
                 {{object.name}}
             </td>
 
-        </tr>
-        {% endfor %}
-
-        {% for trainers in trainer_regional_league %}
-
-
-        {% for t in trainers %}
-        <tr>
-
-
-
-            <td>{% for move in object.motion.all %}
-                {{t.name}}, {% endfor %}</td>
-
+            <td>
+                {{trainer_regional_league}}
+            </td>
 
         </tr>
-
         {% endfor %}
-
-
-        {% endfor %}
-
-
 
 
 
