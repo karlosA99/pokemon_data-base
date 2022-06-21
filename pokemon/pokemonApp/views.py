@@ -256,7 +256,7 @@ class Query4(ListView):
             medals_trainer_by_region = trainer_by_region.values('name').annotate(Count('medals')).order_by('medals__count')
             for m in medals_trainer_by_region:
                 if m['medals__count'] == 8:
-                    trainer_regional_league[dict_regions_index[region]].append()
+                    trainer_regional_league[dict_regions_index[region]].append(m['name'])
 
 
         return render(request,self.template_name,{'object_list': regions,'trainer_regional_league': trainer_regional_league})
